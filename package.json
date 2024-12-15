@@ -10,7 +10,8 @@
     "preview": "vite preview",
     "write": "npx prettier . --write",
     "check": "npx prettier . --check",
-    "prepare": "husky"
+    "prepare": "husky",
+    "format": "prettier --write ."
   },
   "dependencies": {
     "@nextui-org/react": "^2.6.8",

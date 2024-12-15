@@ -114,8 +114,8 @@ export const Home = () => {
               Mahalli ro'znoma
             </h1>
             <p className="text-[4vw] md:text-[22px] leading-[23px] poppins-semibold mt-[60px]">
-              23 nafar toifali o'qituvchilar eng zamonaviy metodika orqali ta'lim
-              berishadi
+              23 nafar toifali o'qituvchilar eng zamonaviy metodika orqali
+              ta'lim berishadi
             </p>
             <button className="text-[5vw] md:text-[30px] poppins-bold mt-[41px] px-[40px] py-1 bg-[#030522] text-white rounded-xl">
               Batafsil
@@ -160,8 +160,8 @@ export const Home = () => {
               Xorijiy adabiyotlar kutubxonasi
             </h1>
             <p className="text-[4vw] md:text-[22px] leading-[23px] poppins-semibold mt-[60px]">
-              Kurslar oxirida siz o'z sohangiz bo'yicha sizni ishga olib kiradigan
-              diplom bilan ta'minlanasiz
+              Kurslar oxirida siz o'z sohangiz bo'yicha sizni ishga olib
+              kiradigan diplom bilan ta'minlanasiz
             </p>
             <button className="text-[5vw] md:text-[30px] poppins-bold mt-[41px] px-[40px] py-1 bg-[#030522] text-white rounded-xl">
               Batafsil
