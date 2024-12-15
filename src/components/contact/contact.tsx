@@ -10,7 +10,7 @@ export const Contact = () => {
 
         <div className="flex flex-col md:flex-row justify-between bg-[#F6F1F1] mt-10">
           <div className="w-full md:w-[48%]">
-            <img src="/public/map.png" alt="map" className="w-full" />
+            <img src="/map.png" alt="map" className="w-full" />
           </div>
           <div className="w-full md:w-[48%] pt-[50px] md:pt-[100px]">
             <div className="flex flex-col md:flex-row items-center justify-between">

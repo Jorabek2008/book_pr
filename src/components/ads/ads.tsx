@@ -15,7 +15,7 @@ export const Ads = () => {
           >
             <div className="relative">
               <img
-                src="/public/ads1.png"
+                src="/ads1.png"
                 alt="tabiat 1 rasm"
                 className="w-full"
               />
@@ -57,7 +57,7 @@ export const Ads = () => {
           >
             <div className="relative">
               <img
-                src="/public/ads2.png"
+                src="/ads2.png"
                 alt="tabiat 2 rasm"
                 className="w-full"
               />
@@ -100,7 +100,7 @@ export const Ads = () => {
           >
             <div className="relative">
               <img
-                src="/public/ads3.png"
+                src="/ads3.png"
                 alt="tabiat 3 rasm"
                 className="w-full"
               />
@@ -144,7 +144,7 @@ export const Ads = () => {
           >
             <div className="relative">
               <img
-                src="/public/ads4.png"
+                src="/ads4.png"
                 alt="tabiat 4 rasm"
                 className="w-full"
               />
@@ -186,7 +186,7 @@ export const Ads = () => {
           >
             <div className="relative">
               <img
-                src="/public/ads5.png"
+                src="/ads5.png"
                 alt="tabiat 5 rasm"
                 className="w-full"
               />
@@ -229,7 +229,7 @@ export const Ads = () => {
           >
             <div className="relative">
               <img
-                src="/public/ads6.png"
+                src="/ads6.png"
                 alt="tabiat 6 rasm"
                 className="w-full"
               />

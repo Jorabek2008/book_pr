@@ -22,7 +22,7 @@ export const About = () => {
             <div className="mt-[32px] ml-[20px]">
               <div className="flex gap-3">
                 <img
-                  src="/public/check.png"
+                  src="/check.png"
                   alt="check"
                   className="w-[20px] h-[20px]"
                 />
@@ -32,7 +32,7 @@ export const About = () => {
               </div>
               <div className="flex gap-3">
                 <img
-                  src="/public/check.png"
+                  src="/check.png"
                   alt="check"
                   className="w-[20px] h-[20px]"
                 />
@@ -42,7 +42,7 @@ export const About = () => {
               </div>
               <div className="flex gap-3">
                 <img
-                  src="/public/check.png"
+                  src="/check.png"
                   alt="check"
                   className="w-[20px] h-[20px]"
                 />
@@ -59,7 +59,7 @@ export const About = () => {
           </div>
 
           <Image
-            src="/public/weAbout.png"
+            src="/weAbout.png"
             className="w-full sm:w-[557px] h-auto mt-4 sm:mt-0"
             alt="libaryBg"
           />

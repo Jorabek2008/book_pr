@@ -29,7 +29,7 @@ export const LocalNew = () => {
               </p>
             </div>
             <Image
-              src="/public/darakchi.png"
+              src="/darakchi.png"
               alt="local-new"
               className="!rounded-none w-full lg:w-auto"
             />

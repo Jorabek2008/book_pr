@@ -105,7 +105,7 @@ export const Home = () => {
           >
             <div className="w-[88px] h-[88px] bg-[#030522] mx-auto rounded-full flex items-center justify-center">
               <img
-                src="/public/letter.png"
+                src="/letter.png"
                 alt="letter"
                 className="w-[33px] h-[33px]"
               />
@@ -128,7 +128,7 @@ export const Home = () => {
           >
             <div className="w-[88px] h-[88px] bg-[#030522] mx-auto rounded-full flex items-center justify-center">
               <img
-                src="/public/cub.png"
+                src="/cub.png"
                 alt="letter"
                 className="w-[33px] h-[33px]"
               />
@@ -151,7 +151,7 @@ export const Home = () => {
           >
             <div className="w-[88px] h-[88px] bg-[#030522] mx-auto rounded-full flex items-center justify-center">
               <img
-                src="/public/image.png"
+                src="/image.png"
                 alt="letter"
                 className="w-[33px] h-[33px]"
               />
@@ -185,7 +185,7 @@ export const Home = () => {
             >
               <div className="relative">
                 <img
-                  src="/public/idea1.png"
+                  src="/idea1.png"
                   alt="tabiat 1 rasm"
                   className="w-full"
                 />
@@ -207,7 +207,7 @@ export const Home = () => {
             >
               <div className="relative">
                 <img
-                  src="/public/idea2.png"
+                  src="/idea2.png"
                   alt="tabiat 1 rasm"
                   className="w-full"
                 />
@@ -229,7 +229,7 @@ export const Home = () => {
             >
               <div className="relative">
                 <img
-                  src="/public/idea3.png"
+                  src="/idea3.png"
                   alt="tabiat 1 rasm"
                   className="w-full"
                 />
@@ -251,7 +251,7 @@ export const Home = () => {
             >
               <div className="relative">
                 <img
-                  src="/public/idea4.png"
+                  src="/idea4.png"
                   alt="tabiat 1 rasm"
                   className="w-full"
                 />
@@ -273,7 +273,7 @@ export const Home = () => {
             >
               <div className="relative">
                 <img
-                  src="/public/idea5.png"
+                  src="/idea5.png"
                   alt="tabiat 1 rasm"
                   className="w-full"
                 />
@@ -295,7 +295,7 @@ export const Home = () => {
             >
               <div className="relative">
                 <img
-                  src="/public/idea6.png"
+                  src="/idea6.png"
                   alt="tabiat 1 rasm"
                   className="w-full"
                 />
