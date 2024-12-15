@@ -127,11 +127,7 @@ export const Home = () => {
             style={{ boxShadow: "1px 1px 6.8px 0px #00000040" }}
           >
             <div className="w-[88px] h-[88px] bg-[#030522] mx-auto rounded-full flex items-center justify-center">
-              <img
-                src="/cub.png"
-                alt="letter"
-                className="w-[33px] h-[33px]"
-              />
+              <img src="/cub.png" alt="letter" className="w-[33px] h-[33px]" />
             </div>
             <h1 className="text-[6vw] md:text-[33px] mt-[20px] poppins-bold leading-[40px]">
               Buyurtma berish
@@ -184,11 +180,7 @@ export const Home = () => {
               style={{ boxShadow: "1px 1px 6.8px 0px #00000040" }}
             >
               <div className="relative">
-                <img
-                  src="/idea1.png"
-                  alt="tabiat 1 rasm"
-                  className="w-full"
-                />
+                <img src="/idea1.png" alt="tabiat 1 rasm" className="w-full" />
               </div>
 
               <div className="pl-4 pb-6 text-center bg-white rounded-b-2xl">
@@ -206,11 +198,7 @@ export const Home = () => {
               style={{ boxShadow: "1px 1px 6.8px 0px #00000040" }}
             >
               <div className="relative">
-                <img
-                  src="/idea2.png"
-                  alt="tabiat 1 rasm"
-                  className="w-full"
-                />
+                <img src="/idea2.png" alt="tabiat 1 rasm" className="w-full" />
               </div>
 
               <div className="pl-4 pb-6 text-center bg-white rounded-b-2xl">
@@ -228,11 +216,7 @@ export const Home = () => {
               style={{ boxShadow: "1px 1px 6.8px 0px #00000040" }}
             >
               <div className="relative">
-                <img
-                  src="/idea3.png"
-                  alt="tabiat 1 rasm"
-                  className="w-full"
-                />
+                <img src="/idea3.png" alt="tabiat 1 rasm" className="w-full" />
               </div>
 
               <div className="pl-4 pb-6 text-center bg-white rounded-b-2xl">
@@ -250,11 +234,7 @@ export const Home = () => {
               style={{ boxShadow: "1px 1px 6.8px 0px #00000040" }}
             >
               <div className="relative">
-                <img
-                  src="/idea4.png"
-                  alt="tabiat 1 rasm"
-                  className="w-full"
-                />
+                <img src="/idea4.png" alt="tabiat 1 rasm" className="w-full" />
               </div>
 
               <div className="pl-4 pb-6 text-center bg-white rounded-b-2xl">
@@ -272,11 +252,7 @@ export const Home = () => {
               style={{ boxShadow: "1px 1px 6.8px 0px #00000040" }}
             >
               <div className="relative">
-                <img
-                  src="/idea5.png"
-                  alt="tabiat 1 rasm"
-                  className="w-full"
-                />
+                <img src="/idea5.png" alt="tabiat 1 rasm" className="w-full" />
               </div>
 
               <div className="pl-4 pb-6 text-center bg-white rounded-b-2xl">
@@ -294,11 +270,7 @@ export const Home = () => {
               style={{ boxShadow: "1px 1px 6.8px 0px #00000040" }}
             >
               <div className="relative">
-                <img
-                  src="/idea6.png"
-                  alt="tabiat 1 rasm"
-                  className="w-full"
-                />
+                <img src="/idea6.png" alt="tabiat 1 rasm" className="w-full" />
               </div>
 
               <div className="pl-4 pb-6 text-center bg-white rounded-b-2xl">

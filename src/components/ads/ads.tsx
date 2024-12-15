@@ -14,11 +14,7 @@ export const Ads = () => {
             style={{ boxShadow: "1px 1px 6.8px 0px #00000040" }}
           >
             <div className="relative">
-              <img
-                src="/ads1.png"
-                alt="tabiat 1 rasm"
-                className="w-full"
-              />
+              <img src="/ads1.png" alt="tabiat 1 rasm" className="w-full" />
               <div className="absolute bottom-0 left-0 w-[164px] py-[10px] px-[16px] bg-[#030522] rounded-tr-3xl">
                 <h1 className="text-white text-lg poppins-semibold">Sayohat</h1>
               </div>
@@ -56,11 +52,7 @@ export const Ads = () => {
             style={{ boxShadow: "1px 1px 6.8px 0px #00000040" }}
           >
             <div className="relative">
-              <img
-                src="/ads2.png"
-                alt="tabiat 2 rasm"
-                className="w-full"
-              />
+              <img src="/ads2.png" alt="tabiat 2 rasm" className="w-full" />
               <div className="absolute bottom-0 left-0 w-[164px] py-[10px] px-[16px] bg-[#030522] rounded-tr-3xl">
                 <h1 className="text-white text-lg poppins-semibold">
                   Milliy bayram
@@ -99,11 +91,7 @@ export const Ads = () => {
             style={{ boxShadow: "1px 1px 6.8px 0px #00000040" }}
           >
             <div className="relative">
-              <img
-                src="/ads3.png"
-                alt="tabiat 3 rasm"
-                className="w-full"
-              />
+              <img src="/ads3.png" alt="tabiat 3 rasm" className="w-full" />
               <div className="absolute bottom-0 left-0 w-[164px] py-[10px] px-[16px] bg-[#030522] rounded-tr-3xl">
                 <h1 className="text-white text-lg poppins-semibold">
                   Diniy yangiliklar
@@ -143,11 +131,7 @@ export const Ads = () => {
             style={{ boxShadow: "1px 1px 6.8px 0px #00000040" }}
           >
             <div className="relative">
-              <img
-                src="/ads4.png"
-                alt="tabiat 4 rasm"
-                className="w-full"
-              />
+              <img src="/ads4.png" alt="tabiat 4 rasm" className="w-full" />
               <div className="absolute bottom-0 left-0 w-[164px] py-[10px] px-[16px] bg-[#030522] rounded-tr-3xl">
                 <h1 className="text-white text-lg poppins-semibold">Sayohat</h1>
               </div>
@@ -185,11 +169,7 @@ export const Ads = () => {
             style={{ boxShadow: "1px 1px 6.8px 0px #00000040" }}
           >
             <div className="relative">
-              <img
-                src="/ads5.png"
-                alt="tabiat 5 rasm"
-                className="w-full"
-              />
+              <img src="/ads5.png" alt="tabiat 5 rasm" className="w-full" />
               <div className="absolute bottom-0 left-0 w-[164px] py-[10px] px-[16px] bg-[#030522] rounded-tr-3xl">
                 <h1 className="text-white text-lg poppins-semibold">
                   Milliy bayram
@@ -228,11 +208,7 @@ export const Ads = () => {
             style={{ boxShadow: "1px 1px 6.8px 0px #00000040" }}
           >
             <div className="relative">
-              <img
-                src="/ads6.png"
-                alt="tabiat 6 rasm"
-                className="w-full"
-              />
+              <img src="/ads6.png" alt="tabiat 6 rasm" className="w-full" />
               <div className="absolute bottom-0 left-0 w-[164px] py-[10px] px-[16px] bg-[#030522] rounded-tr-3xl">
                 <h1 className="text-white text-lg poppins-semibold">
                   Diniy yangiliklar
