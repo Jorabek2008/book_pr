@@ -46,7 +46,7 @@ export const Home = () => {
             <h1 className="xl:text-[35px] text-[16px] sm:text-[2vw] md:text-[2vw] poppins-regular text-white xl:leading-[61px] sm:leading-[20px] md:leading-[30px]">
               Bizning zamonaviy kutubxonamizga xush kelibsiz!
             </h1>
-            Denov tuman Axborot <br /> kutubxona <br /> markazi
+            Angor tuman Axborot <br /> kutubxona <br /> markazi
           </h1>
         </div>
         <div className="absolute bottom-5 left-1/2 transform -translate-x-1/2 z-20 flex space-x-2">

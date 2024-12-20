@@ -12,6 +12,9 @@ export default {
       backgroundImage: {
         "home-bg": "url('/public/libaryBg.png')",
       },
+      colors: {
+        primary: "#05719B",
+      },
     },
   },
   plugins: [nextui()],
