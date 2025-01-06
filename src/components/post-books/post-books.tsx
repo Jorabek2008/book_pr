@@ -1,8 +1,8 @@
 import {
   Button,
-  Input,
-  Select,
-  SelectItem,
+  Modal,
+  ModalBody,
+  ModalContent,
   Table,
   TableBody,
   TableCell,
@@ -10,7 +10,10 @@ import {
   TableHeader,
   TableRow,
 } from "@nextui-org/react";
-import { FaDownload, FaSearch, FaEdit, FaTrash } from "react-icons/fa";
+import { useState } from "react";
+import { FaEdit, FaTrash } from "react-icons/fa";
+import { MdPublish } from "react-icons/md";
+import { CreateBooks } from "./components";
 
 interface BookData {
   author: string;
@@ -55,40 +58,35 @@ export const PostBooks = () => {
   const handleActionClick = () => {
     console.log("Salom");
   };
+  const [isOpen, setIsOpen] = useState<boolean>(false);
 
   return (
     <div className="w-full">
-      <h1 className="text-[20px] font-bold">Kitob yuklash</h1>
-      <div className="flex items-end justify-between gap-5 mt-5">
-        <Select
-          label="Guruh"
-          placeholder="Guruhni tanlash"
-          labelPlacement="outside"
+      <div className="flex justify-between items-center">
+        <h1 className="text-[20px] font-bold">Kitob yuklash</h1>
+        <Button
+          color="primary"
+          onPress={() => setIsOpen(true)}
+          startContent={<MdPublish />}
         >
-          <SelectItem>Boshqalar</SelectItem>
-        </Select>
-        <Select
-          label="Varoq"
-          placeholder="Varoqni tanlash"
-          labelPlacement="outside"
-        >
-          <SelectItem>All Time</SelectItem>
-        </Select>
-        <Input
-          placeholder="Nomini kiriting"
-          labelPlacement="outside"
-          label="Nomi"
-          startContent={<FaSearch size={16} className="text-[#0B6C90]" />}
-        />
-        <Input
-          placeholder="Muallif nomini kiriting"
-          labelPlacement="outside"
-          label="Muallif"
-        />
-        <Button color="primary" className="w-[100px]">
-          <FaDownload />
+          Kitob yuklash
         </Button>
+
+        <Modal
+          size="2xl"
+          scrollBehavior="outside"
+          className="w-[650px] h-auto overflow-y-scroll"
+          isOpen={isOpen}
+          onClose={() => setIsOpen(false)}
+        >
+          <ModalContent>
+            <ModalBody>
+              <CreateBooks />
+            </ModalBody>
+          </ModalContent>
+        </Modal>
       </div>
+
       <div className="mt-5">
         <Table>
           <TableHeader>

@@ -3,6 +3,7 @@ import { useForm, Controller } from "react-hook-form";
 import { loginAdmin } from "../../../redux/slice/login-admin-slice";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../../redux/store"; // Import the AppDispatch type
+import { Link } from "react-router-dom";
 
 interface FormData {
   email: string;
@@ -85,6 +86,7 @@ export const AdminLogin = () => {
             >
               {loading ? "Loading..." : "Login"}
             </Button>
+            <Link to={"/"} className="mt-3 text-primary">Bosh sahifaga o'tish</Link>
           </div>
         </form>
       </div>

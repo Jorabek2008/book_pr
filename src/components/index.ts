@@ -5,3 +5,4 @@ export { Ads } from "./ads";
 export { Contact } from "./contact";
 export { AdminDashboard } from "./admin-dashboard";
 export { PostBooks } from "./post-books";
+export { YandexMap } from "./yandex-maps";

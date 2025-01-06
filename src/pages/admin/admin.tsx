@@ -41,13 +41,21 @@ export const Admin = () => {
     },
   ];
   const [active, setActive] = useState("/dashboard");
+
+  const logOutBtn = () => {
+    localStorage.removeItem("userId");
+    location.reload();
+  };
   return (
     <div>
       <div className="w-full h-[80px] flex justify-between items-center py-2">
         <div className="w-[62px] h-[54px] mx-auto">
           <Image src="/logo.png" alt="logo" />
         </div>
-        <Button className="bg-primary text-white mr-20 rounded-[40px]">
+        <Button
+          onClick={() => logOutBtn()}
+          className="bg-primary text-white mr-20 rounded-[40px]"
+        >
           Logout <Image src="/user.png" className="w-[35px] h-[35px] ml-2" />
         </Button>
       </div>
@@ -66,6 +74,7 @@ export const Admin = () => {
             </Button>
           ))}
           <Button
+            onClick={() => logOutBtn()}
             className={`flex items-center justify-start text-[20px] hover:bg-primary transition-all duration-300 ease-linear text-black hover:text-white rounded-lg p-2`}
           >
             <div className="flex gap-3 items-center">

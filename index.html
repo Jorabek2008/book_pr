@@ -15,5 +15,31 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    <script
+      src="https://api-maps.yandex.ru/2.1/?lang=en_RU"
+      type="text/javascript"
+    ></script>
+    <script type="text/javascript">
+      ymaps.ready(init);
+      function init() {
+        var myMap = new ymaps.Map("map", {
+          center: [37.462555, 67.149043],
+          zoom: 16,
+        });
+        var myPlacemark = new ymaps.Placemark(
+          [37.462555, 67.149043], // Marker koordinatasi
+          {
+            // Ballon mazmuni
+            balloonContent: "Angor tuman kutubxonasi",
+          },
+          {
+            iconColor: "#FF0000", // Marker rangi (qizil)
+          },
+        );
+
+        // Marker xaritaga qo'shilmoqda
+        myMap.geoObjects.add(myPlacemark);
+      }
+    </script>
   </body>
 </html>

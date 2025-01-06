@@ -1,14 +1,18 @@
 import { useState, useEffect } from "react";
 import { About, Ads, Contact, Footer, Header } from "../../components";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../../redux";
+import { getAdsThunk } from "../../redux/slice/get-ads-slice";
 
 const images = [
   "https://images.unsplash.com/photo-1521587760476-6c12a4b040da?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8bGlicmFyeXxlbnwwfHwwfHx8MA%3D%3D",
-  "https://png.pngtree.com/background/20230403/original/pngtree-big-library-interior-books-shelf-vector-picture-image_2293285.jpg",
-  "https://img.freepik.com/free-photo/anime-style-cozy-home-interior-with-furnishings_23-2151176467.jpg",
+  "/libaryBg2.jpg",
+  "/libaryBg3.jpg",
   "/libaryBg.png",
 ];
 
 export const Home = () => {
+  const dispatch = useDispatch<AppDispatch>();
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   useEffect(() => {
@@ -19,6 +23,11 @@ export const Home = () => {
     return () => clearInterval(interval);
   }, []);
 
+  useEffect(() => {
+    dispatch(getAdsThunk());
+  }, []);
+
+  const { ads } = useSelector((state: RootState) => state.getAds);
   return (
     <div>
       <Header />
@@ -63,228 +72,7 @@ export const Home = () => {
 
       <About />
 
-      <div className="bg-[#030522]">
-        <div className="max-w-[1200px] mx-auto py-[25px]">
-          <div className="flex flex-col sm:flex-row items-center justify-between space-y-4 sm:space-y-0">
-            <h1 className="text-[10vw] sm:text-[68px] text-center text-white poppins-semibold leading-tight sm:leading-[76px]">
-              454
-              <span className="text-[5vw] sm:text-[35px] block poppins-regular leading-tight sm:leading-[38px]">
-                Jami kitoblar soni
-              </span>
-            </h1>
-
-            <h1 className="text-[10vw] sm:text-[68px] text-center text-white poppins-semibold leading-tight sm:leading-[76px]">
-              7
-              <span className="text-[5vw] sm:text-[35px] block poppins-regular leading-tight sm:leading-[38px]">
-                Xalqaro adabiyotlar
-              </span>
-            </h1>
-
-            <h1 className="text-[10vw] sm:text-[68px] text-center text-white poppins-semibold leading-tight sm:leading-[76px]">
-              54
-              <span className="text-[5vw] sm:text-[35px] block poppins-regular leading-tight sm:leading-[38px]">
-                Milliy adabiyotlar
-              </span>
-            </h1>
-
-            <h1 className="text-[10vw] sm:text-[68px] text-center text-white poppins-semibold leading-tight sm:leading-[76px]">
-              454
-              <span className="text-[5vw] sm:text-[35px] block poppins-regular leading-tight sm:leading-[38px]">
-                Yoshlar uchun adabiyotlar
-              </span>
-            </h1>
-          </div>
-        </div>
-      </div>
-
-      <div className="max-w-[1200px] mx-auto py-[60px]">
-        <div className="flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0">
-          <div
-            className="w-full md:w-[388px] text-center rounded-[22px] p-[30px] mx-2"
-            style={{ boxShadow: "1px 1px 6.8px 0px #00000040" }}
-          >
-            <div className="w-[88px] h-[88px] bg-[#030522] mx-auto rounded-full flex items-center justify-center">
-              <img
-                src="/letter.png"
-                alt="letter"
-                className="w-[33px] h-[33px]"
-              />
-            </div>
-            <h1 className="text-[6vw] md:text-[33px] mt-[20px] poppins-bold leading-[40px]">
-              Mahalli ro'znoma
-            </h1>
-            <p className="text-[4vw] md:text-[22px] leading-[23px] poppins-semibold mt-[60px]">
-              23 nafar toifali o'qituvchilar eng zamonaviy metodika orqali
-              ta'lim berishadi
-            </p>
-            <button className="text-[5vw] md:text-[30px] poppins-bold mt-[41px] px-[40px] py-1 bg-[#030522] text-white rounded-xl">
-              Batafsil
-            </button>
-          </div>
-
-          <div
-            className="w-full md:w-[388px] text-center rounded-[22px] p-[30px] mx-2"
-            style={{ boxShadow: "1px 1px 6.8px 0px #00000040" }}
-          >
-            <div className="w-[88px] h-[88px] bg-[#030522] mx-auto rounded-full flex items-center justify-center">
-              <img src="/cub.png" alt="letter" className="w-[33px] h-[33px]" />
-            </div>
-            <h1 className="text-[6vw] md:text-[33px] mt-[20px] poppins-bold leading-[40px]">
-              Buyurtma berish
-            </h1>
-            <p className="text-[4vw] md:text-[22px] leading-[23px] poppins-semibold mt-[60px]">
-              14 nafar Ishlab chiqarish ta'lim ustalari talabalarga o'rgangan
-              bilimlarini amaliyotda qo'llashlariga yordam beradi
-            </p>
-            <button className="text-[5vw] md:text-[30px] poppins-bold mt-[41px] px-[40px] py-1 bg-[#030522] text-white rounded-xl">
-              Batafsil
-            </button>
-          </div>
-
-          <div
-            className="w-full md:w-[388px] text-center rounded-[22px] p-[30px] mx-2"
-            style={{ boxShadow: "1px 1px 6.8px 0px #00000040" }}
-          >
-            <div className="w-[88px] h-[88px] bg-[#030522] mx-auto rounded-full flex items-center justify-center">
-              <img
-                src="/image.png"
-                alt="letter"
-                className="w-[33px] h-[33px]"
-              />
-            </div>
-            <h1 className="text-[6vw] md:text-[33px] mt-[20px] poppins-bold leading-[40px]">
-              Xorijiy adabiyotlar kutubxonasi
-            </h1>
-            <p className="text-[4vw] md:text-[22px] leading-[23px] poppins-semibold mt-[60px]">
-              Kurslar oxirida siz o'z sohangiz bo'yicha sizni ishga olib
-              kiradigan diplom bilan ta'minlanasiz
-            </p>
-            <button className="text-[5vw] md:text-[30px] poppins-bold mt-[41px] px-[40px] py-1 bg-[#030522] text-white rounded-xl">
-              Batafsil
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <Ads />
-
-      <div className="bg-[#03052233]">
-        <div className="max-w-[1200px] mx-auto py-[25px]">
-          <h1 className="text-[8vw] sm:text-[38px] text-[#030522] poppins-bold leading-[61px]">
-            O'qishga tavfsiya etamiz
-          </h1>
-
-          <div className="flex flex-col md:flex-row mt-10 flex-wrap items-center justify-between gap-3">
-            <div
-              className="w-full md:w-[388px] rounded-2xl mx-2"
-              style={{ boxShadow: "1px 1px 6.8px 0px #00000040" }}
-            >
-              <div className="relative">
-                <img src="/idea1.png" alt="tabiat 1 rasm" className="w-full" />
-              </div>
-
-              <div className="pl-4 pb-6 text-center bg-white rounded-b-2xl">
-                <h1 className="text-[6vw] md:text-[22px] poppins-bold leading-[32px] text-[#030522] py-[16px]">
-                  Denov tumani
-                </h1>
-                <p className="text-[4vw] md:text-[17px] mb-20 text-[#030522] poppins-semibold leading-6">
-                  Maktab,Kollej,Oliy ta'lim fanlari uchun o'quv darsliklar
-                </p>
-              </div>
-            </div>
-
-            <div
-              className="w-full md:w-[388px] rounded-2xl mx-2"
-              style={{ boxShadow: "1px 1px 6.8px 0px #00000040" }}
-            >
-              <div className="relative">
-                <img src="/idea2.png" alt="tabiat 1 rasm" className="w-full" />
-              </div>
-
-              <div className="pl-4 pb-6 text-center bg-white rounded-b-2xl">
-                <h1 className="text-[6vw] md:text-[22px] poppins-bold leading-[32px] text-[#030522] py-[16px]">
-                  Sarguzasht
-                </h1>
-                <p className="text-[4vw] md:text-[17px] mb-20 text-[#030522] poppins-semibold leading-6">
-                  Milliy va jaxon sarguzashtga boy bo'lgan kitoblar
-                </p>
-              </div>
-            </div>
-
-            <div
-              className="w-full md:w-[388px] rounded-2xl mx-2"
-              style={{ boxShadow: "1px 1px 6.8px 0px #00000040" }}
-            >
-              <div className="relative">
-                <img src="/idea3.png" alt="tabiat 1 rasm" className="w-full" />
-              </div>
-
-              <div className="pl-4 pb-6 text-center bg-white rounded-b-2xl">
-                <h1 className="text-[6vw] md:text-[22px] poppins-bold leading-[32px] text-[#030522] py-[16px]">
-                  Badiiy asarlar
-                </h1>
-                <p className="text-[4vw] md:text-[17px] mb-20 text-[#030522] poppins-semibold leading-6">
-                  Eng sara badiiy asarlar jamlanmasi
-                </p>
-              </div>
-            </div>
-
-            <div
-              className="w-full md:w-[388px] rounded-2xl mx-2"
-              style={{ boxShadow: "1px 1px 6.8px 0px #00000040" }}
-            >
-              <div className="relative">
-                <img src="/idea4.png" alt="tabiat 1 rasm" className="w-full" />
-              </div>
-
-              <div className="pl-4 pb-6 text-center bg-white rounded-b-2xl">
-                <h1 className="text-[6vw] md:text-[22px] poppins-bold leading-[32px] text-[#030522] py-[16px]">
-                  Denov tumani
-                </h1>
-                <p className="text-[4vw] md:text-[17px] mb-20 text-[#030522] poppins-semibold leading-6">
-                  Maktab,Kollej,Oliy ta'lim fanlari uchun o'quv darsliklar
-                </p>
-              </div>
-            </div>
-
-            <div
-              className="w-full md:w-[388px] rounded-2xl mx-2"
-              style={{ boxShadow: "1px 1px 6.8px 0px #00000040" }}
-            >
-              <div className="relative">
-                <img src="/idea5.png" alt="tabiat 1 rasm" className="w-full" />
-              </div>
-
-              <div className="pl-4 pb-6 text-center bg-white rounded-b-2xl">
-                <h1 className="text-[6vw] md:text-[22px] poppins-bold leading-[32px] text-[#030522] py-[16px]">
-                  Sarguzasht
-                </h1>
-                <p className="text-[4vw] md:text-[17px] mb-20 text-[#030522] poppins-semibold leading-6">
-                  Milliy va jaxon sarguzashtga boy bo'lgan kitoblar
-                </p>
-              </div>
-            </div>
-
-            <div
-              className="w-full md:w-[388px] rounded-2xl mx-2"
-              style={{ boxShadow: "1px 1px 6.8px 0px #00000040" }}
-            >
-              <div className="relative">
-                <img src="/idea6.png" alt="tabiat 1 rasm" className="w-full" />
-              </div>
-
-              <div className="pl-4 pb-6 text-center bg-white rounded-b-2xl">
-                <h1 className="text-[6vw] md:text-[22px] poppins-bold leading-[32px] text-[#030522] py-[16px]">
-                  Badiiy asarlar
-                </h1>
-                <p className="text-[4vw] md:text-[17px] mb-20 text-[#030522] poppins-semibold leading-6">
-                  Eng sara badiiy asarlar jamlanmasi
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <Ads pagination={false} data={ads} />
 
       <Contact />
 

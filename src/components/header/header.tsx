@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import { HEADER_MOCK } from "../../mock";
-import { AiOutlineGlobal } from "react-icons/ai";
 import { useState } from "react";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 
@@ -37,8 +36,9 @@ export const Header = () => {
           </div>
 
           <div className="flex items-center gap-2">
-            <AiOutlineGlobal size={25} />
-            <h1 className="text-[16px] font-medium text-blue-500">UZ</h1>
+            <h1 className="text-[16px] font-medium text-blue-500">
+              <Link to={"/admin-login"}>Admin</Link>
+            </h1>
           </div>
 
           <div className="md:hidden flex items-center">
