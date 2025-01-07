@@ -6,12 +6,7 @@ export const HEADER_MOCK = [
   },
   {
     id: 2,
-    name: "Kutubxona faoliyati",
-    share: "/library-activities",
-  },
-  {
-    id: 3,
-    name: "Mahalliy ro'znoma",
+    name: "Bibliografiya faoliyati",
     share: "/local-news",
   },
   {
@@ -22,7 +17,7 @@ export const HEADER_MOCK = [
   {
     id: 5,
     name: "Kutubxona bilan tanishish",
-    share: "/review",
+    share: "/library-activities",
   },
   {
     id: 6,

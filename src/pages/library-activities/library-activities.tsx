@@ -1,8 +1,9 @@
 import { useEffect } from "react";
-import { About, Ads, Contact, Footer, Header } from "../../components";
+import { About, Ads, Footer, Header } from "../../components";
 import { AppDispatch, RootState } from "../../redux";
 import { useDispatch, useSelector } from "react-redux";
 import { getAdsThunk } from "../../redux/slice/get-ads-slice";
+import { GetAllBooks } from "../../components/get-all-books";
 
 export const LibraryActivities = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -16,7 +17,7 @@ export const LibraryActivities = () => {
       <Header />
       <About />
       <Ads pagination={true} data={ads} />
-      <Contact />
+      <GetAllBooks pagination={true} />
       <Footer />
     </div>
   );

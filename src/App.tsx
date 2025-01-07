@@ -1,5 +1,13 @@
 import { Route, Routes } from "react-router-dom";
-import { Admin, AdminLogin, Home, LibraryActivities, LocalNew } from "./pages";
+import {
+  Admin,
+  AdminLogin,
+  Home,
+  LibraryActivities,
+  LocalNew,
+  Location,
+  Management,
+} from "./pages";
 import { AdminDashboard } from "./components";
 import { Toaster } from "react-hot-toast";
 import { AdminLoginProtected, AdminProtected } from "./pages/admin";
@@ -28,6 +36,8 @@ export const App = () => {
             </AdminLoginProtected>
           }
         />
+        <Route path="/location" element={<Location />} />
+        <Route path="/management" element={<Management />} />
         <Route path="/admin-dashboard" element={<AdminDashboard />} />
       </Routes>
     </div>

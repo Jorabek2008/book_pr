@@ -9,6 +9,9 @@ export default {
   ],
   theme: {
     extend: {
+      boxShadow: {
+        primaryShadow: "0 1px 0 0 primary", // Maxsus soyani aniqlash
+      },
       backgroundImage: {
         "home-bg": "url('/public/libaryBg.png')",
       },

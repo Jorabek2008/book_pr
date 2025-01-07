@@ -48,24 +48,25 @@ export const Admin = () => {
   };
   return (
     <div>
-      <div className="w-full h-[80px] flex justify-between items-center py-2">
-        <div className="w-[62px] h-[54px] mx-auto">
+      <div className="w-full h-[80px] flex justify-between items-center py-2 px-4 sm:px-8">
+        <div className="w-[62px] h-[54px]">
           <Image src="/logo.png" alt="logo" />
         </div>
         <Button
           onClick={() => logOutBtn()}
-          className="bg-primary text-white mr-20 rounded-[40px]"
+          className="bg-primary text-white rounded-[40px] px-4 py-2 hidden sm:flex"
         >
           Logout <Image src="/user.png" className="w-[35px] h-[35px] ml-2" />
         </Button>
       </div>
-      <div className="flex gap-4 h-full">
-        <div className="flex flex-col gap-4 w-[290px] ml-7 bg-[#D4D4D8] px-4 pb-4 pt-[68px] rounded-2xl">
+
+      <div className="flex flex-col sm:flex-row gap-4 h-full">
+        <div className="flex flex-col gap-4 w-full sm:w-[290px] bg-[#D4D4D8] px-4 pb-4 pt-[68px] rounded-2xl sm:ml-7">
           {ADMIN_MOCK.map((item) => (
             <Button
               key={item.id}
               onClick={() => setActive(item.shares)}
-              className={`flex items-center justify-start text-[20px] hover:bg-primary transition-all duration-300 ease-linear text-black hover:text-white rounded-lg p-2 ${active === item.shares ? "bg-primary text-white" : ""}`}
+              className={`flex items-center justify-start text-[18px] sm:text-[20px] hover:bg-primary transition-all duration-300 ease-linear text-black hover:text-white rounded-lg p-2 ${active === item.shares ? "bg-primary text-white" : ""}`}
             >
               <div className="flex gap-3 items-center">
                 <div>{item.icon}</div>
@@ -75,7 +76,7 @@ export const Admin = () => {
           ))}
           <Button
             onClick={() => logOutBtn()}
-            className={`flex items-center justify-start text-[20px] hover:bg-primary transition-all duration-300 ease-linear text-black hover:text-white rounded-lg p-2`}
+            className={`flex items-center justify-start text-[18px] sm:text-[20px] hover:bg-primary transition-all duration-300 ease-linear text-black hover:text-white rounded-lg p-2`}
           >
             <div className="flex gap-3 items-center">
               <div>
@@ -85,8 +86,9 @@ export const Admin = () => {
             </div>
           </Button>
         </div>
-        <div className="flex w-full pr-[51px]">
-          <div className="w-[2px] bg-[#FA9E93] h-full mr-4"></div>
+
+        <div className="flex w-full sm:w-auto pr-[51px]">
+          <div className="w-[2px] bg-[#FA9E93] h-full mr-4 hidden sm:block"></div>
           <div className="w-full">
             {active === "/dashboard" && <AdminDashboard />}
             {active === "/postBooks" && <PostBooks />}

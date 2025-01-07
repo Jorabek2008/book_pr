@@ -3,6 +3,7 @@ import { About, Ads, Contact, Footer, Header } from "../../components";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../redux";
 import { getAdsThunk } from "../../redux/slice/get-ads-slice";
+import { GetAllBooks } from "../../components/get-all-books";
 
 const images = [
   "https://images.unsplash.com/photo-1521587760476-6c12a4b040da?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8bGlicmFyeXxlbnwwfHwwfHx8MA%3D%3D",
@@ -71,6 +72,8 @@ export const Home = () => {
       </div>
 
       <About />
+
+      <GetAllBooks pagination={false} />
 
       <Ads pagination={false} data={ads} />
 

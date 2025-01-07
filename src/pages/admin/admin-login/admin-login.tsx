@@ -86,7 +86,9 @@ export const AdminLogin = () => {
             >
               {loading ? "Loading..." : "Login"}
             </Button>
-            <Link to={"/"} className="mt-3 text-primary">Bosh sahifaga o'tish</Link>
+            <Link to={"/"} className="mt-3 text-primary">
+              Bosh sahifaga o'tish
+            </Link>
           </div>
         </form>
       </div>

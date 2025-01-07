@@ -1,1 +1,1 @@
-export * from "./yandex-maps"
+export * from "./yandex-maps";

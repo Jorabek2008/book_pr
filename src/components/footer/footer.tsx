@@ -18,8 +18,8 @@ export const Footer = () => {
               <img src="/logo.png" alt="logo" />
               <h1 className="mt-5 text-white">Manzilimiz</h1>
               <h1 className="mt-2 text-white">
-                - Manzilimiz 190200, Angor tumani 8-Mart ko'chasi 2-uy . - Mo'ljal:
-                Barkamol avlod bolalar maktabi
+                - Manzilimiz 190200, Angor tumani 8-Mart ko'chasi 2-uy . -
+                Mo'ljal: Barkamol avlod bolalar maktabi
               </h1>
 
               <div className="mt-[45px] flex items-center gap-5">
@@ -81,6 +81,9 @@ export const Footer = () => {
             </div>
           </div>
         </div>
+        <footer className="bg-blue-600 text-white text-center py-4 mt-8">
+          <p>&copy; 2025 Manzilimiz. Barcha huquqlar himoyalangan.</p>
+        </footer>
       </div>
     </div>
   );

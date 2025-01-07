@@ -55,7 +55,7 @@ export const Contact = () => {
           <div className="w-full md:w-[48%]">
             <YandexMap />
           </div>
-          <div className="w-full md:w-[48%] pt-[50px] mr-5 md:pt-[100px]">
+          <div className="w-full px-7 md:w-[48%] pt-[50px] mr-5 md:pt-[100px]">
             <form onSubmit={handleSubmit(onSubmit)}>
               <div className="flex flex-col md:flex-row items-center justify-between">
                 <Controller
