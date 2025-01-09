@@ -74,15 +74,7 @@ export const CreateBooks = () => {
     }
   };
 
-  const handleFileChange2 = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const files = e.target.files;
-
-    if (files) {
-      const fileArray = Array.from(files); // Convert FileList to Array
-      setAuthorImg((prevImages) => [...prevImages, ...fileArray]); // Append new files
-      setValue("author_img", [...selectedImages, ...fileArray]); // Faqat birinchi faylni saqlash
-    }
-  };
+ 
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
@@ -190,21 +182,6 @@ export const CreateBooks = () => {
               <FaTrash />
             </Button>
           </div>
-        ))}
-
-        <input
-          type="file"
-          accept="image/*"
-          {...register("author_img")}
-          onChange={handleFileChange2}
-        />
-        {authorImg.map((item) => (
-          <Image
-            src={`${URL.createObjectURL(item)}`}
-            alt="Selected"
-            style={{ width: "100px", height: "100px" }}
-            className="object-cover"
-          />
         ))}
 
         <Button

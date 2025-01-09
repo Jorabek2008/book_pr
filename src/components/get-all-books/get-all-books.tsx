@@ -77,9 +77,12 @@ export const GetAllBooks: FC<AdsProps> = ({ pagination }) => {
           <div className="grid grid-cols-4 gap-10">
             {allBooks.map((item) => (
               <Card key={item.id} className="w-[300px]">
-                <CardBody>
+                <CardBody className="w-full">
                   {item.book_img.slice(0, 1).map((item1) => (
-                    <Image src={`${item1}`} className="object-cover w-full h-[230px]" />
+                    <Image
+                      src={`${item1}`}
+                      className="object-cover w-[300px] h-[230px]"
+                    />
                   ))}
                 </CardBody>
                 <div className="p-[12px]">
@@ -88,11 +91,7 @@ export const GetAllBooks: FC<AdsProps> = ({ pagination }) => {
                   </h1>
                   <h1>{item.text_uz}</h1>
                 </div>
-                <CardFooter className="flex items-center gap-3">
-                  <Image
-                    src={`${item.author_img}`}
-                    className="w-[50px] h-[50px] object-cover rounded-full"
-                  />
+                <CardFooter className="">
                   <h1 className="text-[6vw] md:text-[22px]">{item.author}</h1>
                 </CardFooter>
               </Card>

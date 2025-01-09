@@ -75,7 +75,7 @@ export const Ads: FC<AdsProps> = ({ data, pagination }) => {
                   <div className="relative">
                     <Image
                       src={`${item.image}`}
-                      className="w-full h-[230px] object-cover rounded-t-xl rounded-b-none"
+                      className="w-[300px] h-[230px] object-cover rounded-t-xl rounded-b-none"
                     />
                   </div>
                   <div className="ml-4 mb-6">
