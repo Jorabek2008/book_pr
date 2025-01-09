@@ -1,12 +1,13 @@
-import { Button, Input } from "@nextui-org/react";
+import { Button, Image, Input } from "@nextui-org/react";
 import axios from "axios";
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { api } from "../../../../api";
 import toast from "react-hot-toast";
+import { FaTrash } from "react-icons/fa";
 
 interface FormData {
-  book_img: File | null;
+  book_img: File[] | null;
   author_img: File | null;
   title_uz: string;
   text_uz: string;
@@ -17,7 +18,6 @@ export const CreateBooks = () => {
   const {
     handleSubmit,
     control,
-    // reset,
     register,
     setValue,
     formState: { errors },
@@ -25,6 +25,7 @@ export const CreateBooks = () => {
 
   const [loading, setLoading] = useState<boolean>(false);
 
+  const [selectedImages, setSelectedImages] = useState<File[]>([]);
   const onSubmit = async (data: FormData) => {
     setLoading(true);
     const formData = new FormData();
@@ -32,8 +33,11 @@ export const CreateBooks = () => {
       formData.append("author_img", data.author_img);
     }
     if (data.book_img) {
-      formData.append("book_img", data.book_img);
+      selectedImages.forEach((file) => {
+        formData.append("book_img", file);
+      });
     }
+    console.log(selectedImages);
     formData.append("title_uz", data.title_uz);
     formData.append("text_uz", data.text_uz);
     formData.append("author", data.author);
@@ -57,14 +61,6 @@ export const CreateBooks = () => {
     }
   };
 
-  const handleFileChange1 = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const files = e.target.files;
-    if (files && files.length > 0) {
-      setValue("book_img", files[0]);
-    } else {
-      setValue("book_img", null);
-    }
-  };
   const handleFileChange2 = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
     if (files && files.length > 0) {
@@ -73,6 +69,21 @@ export const CreateBooks = () => {
       setValue("author_img", null);
     }
   };
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = e.target.files;
+    if (files) {
+      const fileArray = Array.from(files); // Convert FileList to Array
+      setSelectedImages((prevImages) => [...prevImages, ...fileArray]); // Append new files
+      setValue("book_img", [...selectedImages, ...fileArray]); // Update react-hook-form
+    }
+  };
+  const handleRemoveImage = (index: number) => {
+    const updatedImages = selectedImages.filter((_, i) => i !== index);
+    setSelectedImages(updatedImages); // Mahalliy holatni yangilash
+    setValue("book_img", updatedImages); // React Hook Form qiymatini yangilash
+  };
+
   return (
     <div>
       <form onSubmit={handleSubmit(onSubmit)} className="mt-10">
@@ -140,12 +151,31 @@ export const CreateBooks = () => {
           )}
         />
 
+        <label htmlFor="img1" className="block">
+          Kitobning rasmlarini kiriting
+        </label>
         <input
           type="file"
           accept="image/*"
+          id="img1"
+          multiple // Allow multiple file selection
           {...register("book_img")}
-          onChange={handleFileChange1}
+          onChange={handleFileChange}
         />
+        {selectedImages.map((img, index) => (
+          <div key={index} className="flex items-center justify-between">
+            <p>{img.name}</p>
+            <Image
+              src={`${URL.createObjectURL(img)}`}
+              alt="Selected"
+              style={{ width: "100px", height: "100px" }}
+            />
+
+            <Button color="danger" onClick={() => handleRemoveImage(index)}>
+              <FaTrash />
+            </Button>
+          </div>
+        ))}
 
         <input
           type="file"

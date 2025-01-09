@@ -14,7 +14,7 @@ import {
 interface IGetAllBooks {
   author: string;
   author_img: string;
-  book_img: [string];
+  book_img: string[];
   id: string;
   text_uz: string;
   title_uz: string;
@@ -78,7 +78,12 @@ export const GetAllBooks: FC<AdsProps> = ({ pagination }) => {
             {allBooks.map((item) => (
               <Card key={item.id} className="w-[300px]">
                 <CardBody>
-                  <Image src={`${item.book_img}`} />
+                  {item.book_img.slice(0, 1).map((item1) => (
+                    <Image
+                      src={`${item1}`}
+                      className="object-cover"
+                    />
+                  ))}
                 </CardBody>
                 <div className="p-[12px]">
                   <h1 className="text-[6vw] md:text-[22px] font-semibold text-left">

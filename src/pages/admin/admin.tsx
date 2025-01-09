@@ -1,8 +1,6 @@
 import { Button, Image } from "@nextui-org/react";
-import { FaFileDownload, FaUser } from "react-icons/fa";
+import { FaFileDownload } from "react-icons/fa";
 import { MdDashboard } from "react-icons/md";
-import { VscVmActive } from "react-icons/vsc";
-import { IoIosNotifications } from "react-icons/io";
 import { IoExitSharp } from "react-icons/io5";
 import { useState } from "react";
 import { AdminDashboard, PostBooks } from "../../components";
@@ -21,24 +19,24 @@ export const Admin = () => {
       shares: "/postBooks",
       icon: <FaFileDownload size={20} />,
     },
-    {
-      id: 3,
-      name: "Foydalanuvchilar",
-      shares: "/users",
-      icon: <FaUser size={20} />,
-    },
-    {
-      id: 4,
-      name: "Aktiv holati",
-      shares: "/active",
-      icon: <VscVmActive size={20} />,
-    },
-    {
-      id: 5,
-      name: "Bildirishnoma",
-      shares: "/notification",
-      icon: <IoIosNotifications size={20} />,
-    },
+    // {
+    //   id: 3,
+    //   name: "Foydalanuvchilar",
+    //   shares: "/users",
+    //   icon: <FaUser size={20} />,
+    // },
+    // {
+    //   id: 4,
+    //   name: "Aktiv holati",
+    //   shares: "/active",
+    //   icon: <VscVmActive size={20} />,
+    // },
+    // {
+    //   id: 5,
+    //   name: "Bildirishnoma",
+    //   shares: "/notification",
+    //   icon: <IoIosNotifications size={20} />,
+    // },
   ];
   const [active, setActive] = useState("/dashboard");
 
