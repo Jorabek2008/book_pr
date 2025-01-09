@@ -61,6 +61,8 @@ export const CreateBooks = () => {
         text_uz: "",
         title_uz: "",
       });
+      setSelectedImages([]);
+      setAuthorImg([]);
     } catch (error) {
       if (axios.isAxiosError(error)) {
         console.error("Axios Error:", error.message); // Axios xatoliklarini ushlash
@@ -201,6 +203,7 @@ export const CreateBooks = () => {
             src={`${URL.createObjectURL(item)}`}
             alt="Selected"
             style={{ width: "100px", height: "100px" }}
+            className="object-cover"
           />
         ))}
 

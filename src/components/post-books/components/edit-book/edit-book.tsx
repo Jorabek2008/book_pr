@@ -19,8 +19,8 @@ interface FormData {
 }
 
 interface FormDataObj {
-  book_img: File | null;
-  author_img: File | null;
+  book_img: File[] | null;
+  author_img: File[] | null;
   title_uz: string;
   text_uz: string;
   author: string;
@@ -75,6 +75,12 @@ export const EditBook: FC<TGetId> = ({ id }) => {
       const response = await api.get(`/books/get-book/${id}`);
 
       setEditBooksData(response.data.data);
+      setValue("author", response.data.data.author);
+      setValue("author_img", response.data.data.author_img);
+      setValue("book_img", response.data.data.book_img);
+      setValue("publisher", response.data.data.publisher);
+      setValue("text_uz", response.data.data.text_uz);
+      setValue("title_uz", response.data.data.title_uz);
     } catch (error) {
       if (axios.isAxiosError(error)) {
         console.error("Axios Error:", error.message); // Axios xatoliklarini ushlash
@@ -118,6 +124,7 @@ export const EditBook: FC<TGetId> = ({ id }) => {
             render={({ field }) => (
               <Input
                 {...field}
+                value={field.value}
                 label={"Kitobning nomi"}
                 size="sm"
                 isInvalid={Boolean(errors.title_uz?.message)}
@@ -137,6 +144,7 @@ export const EditBook: FC<TGetId> = ({ id }) => {
                 size="sm"
                 isInvalid={Boolean(errors.text_uz?.message)}
                 isRequired
+                value={field.value}
                 className="mt-6"
                 errorMessage={errors.text_uz?.message as string}
               />
@@ -151,6 +159,7 @@ export const EditBook: FC<TGetId> = ({ id }) => {
                 {...field}
                 label={"Kitob muallifi"}
                 size="sm"
+                value={field.value}
                 isInvalid={Boolean(errors.author?.message)}
                 isRequired
                 className="mt-6"
@@ -167,6 +176,7 @@ export const EditBook: FC<TGetId> = ({ id }) => {
                 {...field}
                 label={"Nashriyotchi"}
                 size="sm"
+                value={field.value}
                 isInvalid={Boolean(errors.publisher?.message)}
                 isRequired
                 className="mt-6 mb-10"
@@ -175,7 +185,7 @@ export const EditBook: FC<TGetId> = ({ id }) => {
             )}
           />
 
-          <label htmlFor="img1">
+          <label htmlFor="img1" className="flex flex-col gap-4">
             <input
               id="img1"
               type="file"
@@ -184,10 +194,14 @@ export const EditBook: FC<TGetId> = ({ id }) => {
               {...register("book_img")}
               onChange={handleFileChange1}
             />
-            <Image
-              src={`${editBooksData?.book_img}`}
-              className="w-[200px] h-[150px] object-cover"
-            />
+            {editBooksData?.book_img?.map((item, index) => (
+              <Image
+                key={index}
+                src={`${item}`}
+                id={`img-${index}`}
+                className="w-[200px] h-[150px] object-cover cursor-pointer"
+              />
+            ))}
           </label>
 
           <input
@@ -196,10 +210,13 @@ export const EditBook: FC<TGetId> = ({ id }) => {
             {...register("author_img")}
             onChange={handleFileChange2}
           />
-          <Image
-            src={`${editBooksData?.author_img}`}
-            className="w-[200px] h-[150px] object-cover"
-          />
+          {/* {editBooksData?.author_img?.map(item => (
+            
+            <Image
+              src={`${item}`}
+              className="w-[200px] h-[150px] object-cover"
+            />
+          ))} */}
 
           <Button
             color="primary"
