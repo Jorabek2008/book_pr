@@ -4,6 +4,7 @@ import { MdDashboard } from "react-icons/md";
 import { IoExitSharp } from "react-icons/io5";
 import { useState } from "react";
 import { AdminDashboard, PostBooks } from "../../components";
+import { Link } from "react-router-dom";
 
 export const Admin = () => {
   const ADMIN_MOCK = [
@@ -30,7 +31,9 @@ export const Admin = () => {
     <div>
       <div className="w-full h-[80px] flex justify-between items-center py-2 px-4 sm:px-8">
         <div className="w-[62px] h-[54px]">
-          <Image src="/logotip.jpg" alt="logo" />
+          <Link to={"/"}>
+            <Image src="/logotip.jpg" alt="logo" className="w-16 h-16" />
+          </Link>
         </div>
         <div className="flex items-center gap-x-4">
           <Image src="/user1.png" className="w-[35px] h-[35px] ml-2" />
@@ -70,7 +73,7 @@ export const Admin = () => {
           </Button>
         </div>
 
-        <div className="flex w-full sm:w-auto pr-[51px]">
+        <div className="flex w-full pr-[51px]">
           <div className="w-[2px] bg-[#FA9E93] h-full mr-4 hidden sm:block"></div>
           <div className="w-full">
             {active === "/dashboard" && <AdminDashboard />}

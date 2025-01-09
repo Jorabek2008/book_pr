@@ -4,13 +4,14 @@ import { api } from "../../../../api";
 import toast from "react-hot-toast";
 import axios from "axios";
 import { Button, Image, Input } from "@nextui-org/react";
+import { FaPlus, FaTrash } from "react-icons/fa";
 
 type TGetId = {
   id: string;
 };
 
 interface FormData {
-  book_img: File | null;
+  book_img: File[] | string[];
   author_img: File | null;
   title_uz: string;
   text_uz: string;
@@ -18,25 +19,18 @@ interface FormData {
   publisher: string;
 }
 
-interface FormDataObj {
-  book_img: File[] | null;
-  author_img: File[] | null;
-  title_uz: string;
-  text_uz: string;
-  author: string;
-  publisher: string;
-}
 export const EditBook: FC<TGetId> = ({ id }) => {
   const {
     handleSubmit,
     control,
+    reset,
     register,
     setValue,
     formState: { errors },
   } = useForm<FormData>();
 
   const [loading, setLoading] = useState<boolean>(false);
-
+  const [selectedImages, setSelectedImages] = useState<File[]>([]);
   const onSubmit = async (data: FormData) => {
     setLoading(true);
     const formData = new FormData();
@@ -44,7 +38,9 @@ export const EditBook: FC<TGetId> = ({ id }) => {
       formData.append("author_img", data.author_img);
     }
     if (data.book_img) {
-      formData.append("book_img", data.book_img);
+      selectedImages.forEach((file) => {
+        formData.append("book_img", file);
+      });
     }
     formData.append("title_uz", data.title_uz);
     formData.append("text_uz", data.text_uz);
@@ -52,12 +48,20 @@ export const EditBook: FC<TGetId> = ({ id }) => {
     formData.append("publisher", data.publisher);
 
     try {
-      const response = await api.post("/books/create-book", formData, {
+      await api.put(`/books/update-book/${id}`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
       });
-      console.log(response);
+      toast.success("Kitob muvaffaqiyatli qo'shildi");
+      reset({
+        author: "",
+        book_img: [],
+        publisher: "",
+        text_uz: "",
+        title_uz: "",
+      });
+      setSelectedImages([]);
     } catch (error) {
       if (axios.isAxiosError(error)) {
         console.error("Axios Error:", error.message); // Axios xatoliklarini ushlash
@@ -69,12 +73,11 @@ export const EditBook: FC<TGetId> = ({ id }) => {
     }
   };
 
-  const [editBooksData, setEditBooksData] = useState<FormDataObj>();
   const editBooks = async (id: string) => {
     try {
       const response = await api.get(`/books/get-book/${id}`);
 
-      setEditBooksData(response.data.data);
+      setSelectedImages(response.data.data.book_img);
       setValue("author", response.data.data.author);
       setValue("author_img", response.data.data.author_img);
       setValue("book_img", response.data.data.book_img);
@@ -94,25 +97,29 @@ export const EditBook: FC<TGetId> = ({ id }) => {
     editBooks(id);
   }, [id]);
 
-  console.log(editBooksData);
-
   const handleFileChange1 = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
-    if (files && files.length > 0) {
-      setValue("book_img", files[0]);
-    } else {
-      setValue("book_img", null);
-    }
-  };
-  const handleFileChange2 = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const files = e.target.files;
-    if (files && files.length > 0) {
-      setValue("author_img", files[0]);
-    } else {
-      setValue("author_img", null);
+
+    if (files) {
+      const fileArray = Array.from(files); // Convert FileList to Array
+      setSelectedImages((prevImages) => [...prevImages, ...fileArray]); // Append new files
+      setValue("book_img", [...selectedImages, ...fileArray]); // Faqat birinchi faylni saqlash
     }
   };
 
+  const getImageSrc = (item: string | File): string => {
+    if (typeof item === "string") {
+      return item; // URL formatidagi rasm
+    }
+    return URL.createObjectURL(item); // File obyektini blob URL formatiga o'zgartirish
+  };
+  const handleRemoveImage = (index: number) => {
+    const newImages = selectedImages.filter(
+      (_, imgIndex) => imgIndex !== index,
+    ); // Tanlangan indexni o‘chirib tashlash
+    setSelectedImages(newImages); // Yangilangan massivni holatda saqlash
+    setValue("book_img", newImages); // Faqat birinchi faylni saqlash
+  };
   return (
     <div>
       <div>
@@ -185,38 +192,29 @@ export const EditBook: FC<TGetId> = ({ id }) => {
             )}
           />
 
-          <label htmlFor="img1" className="flex flex-col gap-4">
-            <input
-              id="img1"
-              type="file"
-              accept="image/*"
-              className={`${editBooksData?.book_img && "hidden"}`}
-              {...register("book_img")}
-              onChange={handleFileChange1}
-            />
-            {editBooksData?.book_img?.map((item, index) => (
-              <Image
-                key={index}
-                src={`${item}`}
-                id={`img-${index}`}
-                className="w-[200px] h-[150px] object-cover cursor-pointer"
-              />
-            ))}
-          </label>
-
           <input
+            id="img1"
             type="file"
             accept="image/*"
-            {...register("author_img")}
-            onChange={handleFileChange2}
+            {...register("book_img")}
+            className="hidden"
+            onChange={handleFileChange1}
           />
-          {/* {editBooksData?.author_img?.map(item => (
-            
-            <Image
-              src={`${item}`}
-              className="w-[200px] h-[150px] object-cover"
-            />
-          ))} */}
+          {selectedImages?.map((item, index) => (
+            <div className="flex items-center gap-8 my-2">
+              <Image
+                key={index}
+                src={`${getImageSrc(item)}`}
+                className="w-[200px] h-[150px] object-cover"
+              />
+              <Button color="danger" onClick={() => handleRemoveImage(index)}>
+                <FaTrash />
+              </Button>
+            </div>
+          ))}
+          <label htmlFor="img1" className=" cursor-pointer flex justify-center">
+            <FaPlus size={60} className="border-2 border-black rounded-md" />
+          </label>
 
           <Button
             color="primary"

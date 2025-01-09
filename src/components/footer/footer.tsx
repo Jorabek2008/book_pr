@@ -1,3 +1,4 @@
+import { Image } from "@nextui-org/react";
 import {
   FaFacebook,
   FaMapMarkedAlt,
@@ -16,7 +17,9 @@ export const Footer = () => {
         <div className="max-w-[1220px] mx-auto">
           <div className="flex flex-col md:flex-row justify-between py-2">
             <div className="w-full md:w-[320px] mb-6 md:mb-0">
-              <img src="/logotip.jpg" alt="logo" className="w-14 h-14" />
+              <Link to={"/"}>
+                <Image src="/logotip.jpg" alt="logo" className="w-14 h-14" />
+              </Link>
               <h1 className="mt-5 text-white">Manzilimiz</h1>
               <h1 className="mt-2 text-white">
                 - Manzilimiz 190200, Angor tumani 8-Mart ko'chasi 2-uy . -

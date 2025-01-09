@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { HEADER_MOCK } from "../../mock";
 import { useState } from "react";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
+import { Image } from "@nextui-org/react";
 
 interface HeaderProps {
   name: string;
@@ -20,7 +21,9 @@ export const Header = () => {
       <div className="max-w-[1220px] mx-auto px-7">
         <div className="flex justify-between items-center py-2">
           <div className="flex items-center gap-2">
-            <img src="/logotip.jpg" alt="logo" className="w-16 h-16" />
+            <Link to={"/"}>
+              <Image src="/logotip.jpg" alt="logo" className="w-16 h-16" />
+            </Link>
           </div>
 
           <div className="hidden md:flex items-center gap-[31px]">

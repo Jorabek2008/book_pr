@@ -4,6 +4,7 @@ import {
   Modal,
   ModalBody,
   ModalContent,
+  Spinner,
   Table,
   TableBody,
   TableCell,
@@ -30,7 +31,9 @@ interface IGetAllBooks {
 }
 
 export const PostBooks = () => {
+  const [clickRemove, setClickRemove] = useState<boolean>(false);
   const handleActionClickRemove = async (id: string) => {
+    setClickRemove(true);
     try {
       const response = await api.delete(`/books/delete-book/${id}`);
       if (response.status) {
@@ -43,6 +46,8 @@ export const PostBooks = () => {
       } else {
         toast.error("Error" + error);
       }
+    } finally {
+      setClickRemove(false);
     }
   };
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -107,6 +112,16 @@ export const PostBooks = () => {
           </ModalContent>
         </Modal>
       </div>
+
+      {clickRemove && (
+        <Modal size="full" isOpen={clickRemove}>
+          <ModalContent>
+            <ModalBody className="flex items-center justify-center">
+              <Spinner />
+            </ModalBody>
+          </ModalContent>
+        </Modal>
+      )}
 
       <div className="mt-5 w-full">
         <Table className="w-full">

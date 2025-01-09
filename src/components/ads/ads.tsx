@@ -49,9 +49,7 @@ export const Ads: FC<AdsProps> = ({ data, pagination }) => {
           E'lonlar
         </h1>
         <div className="flex flex-col md:flex-row items-center flex-wrap gap-3 justify-between">
-          <div
-            className="w-full md:w-[300px] rounded-2xl mx-2"
-          >
+          <div className="w-full md:w-[300px] rounded-2xl mx-2">
             {loading ? (
               <div>
                 <Card className="w-[300px] p-4" radius="lg">
@@ -75,7 +73,10 @@ export const Ads: FC<AdsProps> = ({ data, pagination }) => {
               data?.map((item) => (
                 <Card key={item.id} className="w-[300px]">
                   <div className="relative">
-                    <Image src={`${item.image}`} className=" w-full max-h-[250px] object-cover rounded-t-xl rounded-b-none" />
+                    <Image
+                      src={`${item.image}`}
+                      className="w-full h-[230px] object-cover rounded-t-xl rounded-b-none"
+                    />
                   </div>
                   <div className="ml-4 mb-6">
                     <h1 className="text-[6vw] md:text-[22px] poppins-bold leading-[32px] text-[#030522] my-[16px]">

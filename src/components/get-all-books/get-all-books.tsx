@@ -50,7 +50,7 @@ export const GetAllBooks: FC<AdsProps> = ({ pagination }) => {
 
   useEffect(() => {
     getAllBooks(current);
-  }, []);
+  }, [current]);
   return (
     <div className="max-w-[1200px] mx-auto pt-[54px] pb-[75px]">
       {loading ? (
@@ -79,7 +79,7 @@ export const GetAllBooks: FC<AdsProps> = ({ pagination }) => {
               <Card key={item.id} className="w-[300px]">
                 <CardBody>
                   {item.book_img.slice(0, 1).map((item1) => (
-                    <Image src={`${item1}`} className="object-cover" />
+                    <Image src={`${item1}`} className="object-cover w-full h-[230px]" />
                   ))}
                 </CardBody>
                 <div className="p-[12px]">
