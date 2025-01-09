@@ -77,7 +77,7 @@ export const LocalNew = () => {
         </div>
         <div className="w-full lg:w-[330px] text-center mt-6 lg:mt-0">
           <div className="mt-6">
-            <Image src="/public/generateAi.png" className=" p-2" />
+            <Image src="/generateAi.png" className=" p-2" />
           </div>
         </div>
       </div>
