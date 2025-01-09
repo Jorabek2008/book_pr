@@ -74,8 +74,6 @@ export const CreateBooks = () => {
     }
   };
 
- 
-
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
     if (files) {
@@ -104,7 +102,6 @@ export const CreateBooks = () => {
               label={"Kitobning nomi"}
               size="sm"
               isInvalid={Boolean(errors.title_uz?.message)}
-              isRequired
               errorMessage={errors.title_uz?.message as string}
             />
           )}
@@ -119,7 +116,6 @@ export const CreateBooks = () => {
               label={"Kitob haqida"}
               size="sm"
               isInvalid={Boolean(errors.text_uz?.message)}
-              isRequired
               className="mt-6"
               errorMessage={errors.text_uz?.message as string}
             />
@@ -135,7 +131,6 @@ export const CreateBooks = () => {
               label={"Kitob muallifi"}
               size="sm"
               isInvalid={Boolean(errors.author?.message)}
-              isRequired
               className="mt-6"
               errorMessage={errors.author?.message as string}
             />
@@ -151,21 +146,20 @@ export const CreateBooks = () => {
               label={"Nashriyotchi"}
               size="sm"
               isInvalid={Boolean(errors.publisher?.message)}
-              isRequired
               className="mt-6 mb-10"
               errorMessage={errors.publisher?.message as string}
             />
           )}
         />
 
-        <label htmlFor="img1" className="block">
+        <label htmlFor="img1" className="block mb-3">
           Kitobning rasmlarini kiriting
         </label>
         <input
           type="file"
           accept="image/*"
           id="img1"
-          multiple // Allow multiple file selection
+          multiple
           {...register("book_img")}
           onChange={handleFileChange}
         />
@@ -188,7 +182,7 @@ export const CreateBooks = () => {
           color="primary"
           isLoading={loading}
           type="submit"
-          className="mt-10 w-full"
+          className="mt-10 w-full max-lg:mb-5"
         >
           Yuborish
         </Button>

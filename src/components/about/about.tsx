@@ -3,7 +3,7 @@ import { Image } from "@nextui-org/react";
 export const About = () => {
   return (
     <div>
-      <div className="max-w-[1200px] mx-auto pt-[54px] pb-[75px]">
+      <div className="max-w-[1200px] mx-auto pt-[54px] pb-[75px] max-lg:p-10">
         <h1 className="text-[8vw] sm:text-[38px] poppins-bold leading-[61px]">
           Biz haqimizda
         </h1>
