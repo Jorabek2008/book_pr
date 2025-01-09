@@ -3,12 +3,12 @@ import axios from "axios";
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { api } from "../../../../api";
-import toast from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 import { FaTrash } from "react-icons/fa";
 
 interface FormData {
   book_img: File[] | null;
-  author_img: File | null;
+  author_img: File[] | null;
   title_uz: string;
   text_uz: string;
   author: string;
@@ -18,10 +18,12 @@ export const CreateBooks = () => {
   const {
     handleSubmit,
     control,
+    reset,
     register,
     setValue,
     formState: { errors },
   } = useForm<FormData>();
+  const [authorImg, setAuthorImg] = useState<File[]>([]);
 
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -30,26 +32,35 @@ export const CreateBooks = () => {
     setLoading(true);
     const formData = new FormData();
     if (data.author_img) {
-      formData.append("author_img", data.author_img);
+      authorImg.forEach((file) => {
+        formData.append("author_img", file);
+      });
     }
     if (data.book_img) {
       selectedImages.forEach((file) => {
         formData.append("book_img", file);
       });
     }
-    console.log(selectedImages);
     formData.append("title_uz", data.title_uz);
     formData.append("text_uz", data.text_uz);
     formData.append("author", data.author);
     formData.append("publisher", data.publisher);
 
     try {
-      const response = await api.post("/books/create-book", formData, {
+      await api.post("/books/create-book", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
       });
-      console.log(response);
+      toast.success("Kitob muvaffaqiyatli qo'shildi");
+      reset({
+        author: "",
+        author_img: [],
+        book_img: [],
+        publisher: "",
+        text_uz: "",
+        title_uz: "",
+      });
     } catch (error) {
       if (axios.isAxiosError(error)) {
         console.error("Axios Error:", error.message); // Axios xatoliklarini ushlash
@@ -63,10 +74,11 @@ export const CreateBooks = () => {
 
   const handleFileChange2 = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
-    if (files && files.length > 0) {
-      setValue("author_img", files[0]);
-    } else {
-      setValue("author_img", null);
+
+    if (files) {
+      const fileArray = Array.from(files); // Convert FileList to Array
+      setAuthorImg((prevImages) => [...prevImages, ...fileArray]); // Append new files
+      setValue("author_img", [...selectedImages, ...fileArray]); // Faqat birinchi faylni saqlash
     }
   };
 
@@ -86,6 +98,7 @@ export const CreateBooks = () => {
 
   return (
     <div>
+      <Toaster />
       <form onSubmit={handleSubmit(onSubmit)} className="mt-10">
         <Controller
           name="title_uz"
@@ -183,6 +196,13 @@ export const CreateBooks = () => {
           {...register("author_img")}
           onChange={handleFileChange2}
         />
+        {authorImg.map((item) => (
+          <Image
+            src={`${URL.createObjectURL(item)}`}
+            alt="Selected"
+            style={{ width: "100px", height: "100px" }}
+          />
+        ))}
 
         <Button
           color="primary"

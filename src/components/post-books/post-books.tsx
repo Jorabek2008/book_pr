@@ -68,7 +68,6 @@ export const PostBooks = () => {
   }, []);
 
   const [idClick, setIdClick] = useState<string>("");
-  console.log(allBooks);
   return (
     <div className="w-full px-4 sm:px-8">
       <div className="flex w-full flex-col sm:flex-row justify-between items-center sm:items-center">

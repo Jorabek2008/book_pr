@@ -73,6 +73,7 @@ export const EditBook: FC<TGetId> = ({ id }) => {
   const editBooks = async (id: string) => {
     try {
       const response = await api.get(`/books/get-book/${id}`);
+
       setEditBooksData(response.data.data);
     } catch (error) {
       if (axios.isAxiosError(error)) {
@@ -194,6 +195,10 @@ export const EditBook: FC<TGetId> = ({ id }) => {
             accept="image/*"
             {...register("author_img")}
             onChange={handleFileChange2}
+          />
+          <Image
+            src={`${editBooksData?.author_img}`}
+            className="w-[200px] h-[150px] object-cover"
           />
 
           <Button
