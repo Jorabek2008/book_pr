@@ -69,7 +69,6 @@ export const Contact = () => {
                       size="sm"
                       isInvalid={Boolean(errors.name?.message)}
                       className="w-full md:w-[48%] mb-3 md:mb-0"
-                      isRequired
                       errorMessage={errors.name?.message as string}
                     />
                   )}
@@ -85,7 +84,6 @@ export const Contact = () => {
                       size="sm"
                       isInvalid={Boolean(errors.email?.message)}
                       className="w-full md:w-[48%]"
-                      isRequired
                       errorMessage={errors.email?.message as string}
                     />
                   )}
@@ -102,7 +100,6 @@ export const Contact = () => {
                     size="sm"
                     isInvalid={Boolean(errors.phone?.message)}
                     className="w-full mt-3"
-                    isRequired
                     errorMessage={errors.phone?.message as string}
                   />
                 )}
@@ -118,7 +115,6 @@ export const Contact = () => {
                     size="sm"
                     isInvalid={Boolean(errors.message?.message)}
                     className="w-full mt-3"
-                    isRequired
                     errorMessage={errors.message?.message as string}
                   />
                 )}

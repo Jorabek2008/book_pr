@@ -19,24 +19,6 @@ export const Admin = () => {
       shares: "/postBooks",
       icon: <FaFileDownload size={20} />,
     },
-    // {
-    //   id: 3,
-    //   name: "Foydalanuvchilar",
-    //   shares: "/users",
-    //   icon: <FaUser size={20} />,
-    // },
-    // {
-    //   id: 4,
-    //   name: "Aktiv holati",
-    //   shares: "/active",
-    //   icon: <VscVmActive size={20} />,
-    // },
-    // {
-    //   id: 5,
-    //   name: "Bildirishnoma",
-    //   shares: "/notification",
-    //   icon: <IoIosNotifications size={20} />,
-    // },
   ];
   const [active, setActive] = useState("/dashboard");
 
@@ -48,17 +30,20 @@ export const Admin = () => {
     <div>
       <div className="w-full h-[80px] flex justify-between items-center py-2 px-4 sm:px-8">
         <div className="w-[62px] h-[54px]">
-          <Image src="/logo.png" alt="logo" />
+          <Image src="/logotip.jpg" alt="logo" />
         </div>
-        <Button
-          onClick={() => logOutBtn()}
-          className="bg-primary text-white rounded-[40px] px-4 py-2 hidden sm:flex"
-        >
-          Logout <Image src="/user.png" className="w-[35px] h-[35px] ml-2" />
-        </Button>
+        <div className="flex items-center gap-x-4">
+          <Image src="/user1.png" className="w-[35px] h-[35px] ml-2" />
+          <Button
+            onClick={() => logOutBtn()}
+            className="bg-primary text-white rounded-[40px] px-4 py-2 hidden sm:flex"
+          >
+            Logout
+          </Button>
+        </div>
       </div>
 
-      <div className="flex flex-col sm:flex-row gap-4 h-full">
+      <div className="flex flex-col sm:flex-row gap-4 h-full mt-10">
         <div className="flex flex-col gap-4 w-full sm:w-[290px] bg-[#D4D4D8] px-4 pb-4 pt-[68px] rounded-2xl sm:ml-7">
           {ADMIN_MOCK.map((item) => (
             <Button

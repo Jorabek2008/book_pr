@@ -20,7 +20,7 @@ export const Header = () => {
       <div className="max-w-[1220px] mx-auto px-7">
         <div className="flex justify-between items-center py-2">
           <div className="flex items-center gap-2">
-            <img src="/logo.png" alt="logo" />
+            <img src="/logotip.jpg" alt="logo" className="w-16 h-16" />
           </div>
 
           <div className="hidden md:flex items-center gap-[31px]">
@@ -28,7 +28,7 @@ export const Header = () => {
               <Link
                 to={item.share}
                 key={item.id}
-                className={`${location.pathname === item.share ? "text-white bg-black rounded-2xl" : ""} p-1 poppins-regular`}
+                className={`${location.pathname === item.share ? "text-white bg-black rounded-2xl p-2" : ""} p-1 poppins-regular`}
               >
                 {item.name}
               </Link>

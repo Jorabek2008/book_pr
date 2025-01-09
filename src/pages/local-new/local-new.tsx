@@ -45,7 +45,7 @@ export const LocalNew = () => {
                 Bibliografik qo'llanmalar:
               </h1>
               {bibliograp.map((item) => (
-                <div key={item.id} className="border-1 p-2">
+                <div key={item.id} className="border-2 border-black mt-5 p-2">
                   {item.link ? (
                     <h1 className="text-primary">
                       <Link

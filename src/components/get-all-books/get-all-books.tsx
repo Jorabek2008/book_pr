@@ -74,15 +74,12 @@ export const GetAllBooks: FC<AdsProps> = ({ pagination }) => {
         </div>
       ) : (
         <>
-          <div className="flex gap-4">
+          <div className="grid grid-cols-4 gap-10">
             {allBooks.map((item) => (
               <Card key={item.id} className="w-[300px]">
                 <CardBody>
                   {item.book_img.slice(0, 1).map((item1) => (
-                    <Image
-                      src={`${item1}`}
-                      className="object-cover"
-                    />
+                    <Image src={`${item1}`} className="object-cover" />
                   ))}
                 </CardBody>
                 <div className="p-[12px]">

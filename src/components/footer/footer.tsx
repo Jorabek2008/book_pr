@@ -7,6 +7,7 @@ import {
 } from "react-icons/fa";
 import { FaSquareInstagram } from "react-icons/fa6";
 import { MdEmail } from "react-icons/md";
+import { Link } from "react-router-dom";
 
 export const Footer = () => {
   return (
@@ -15,7 +16,7 @@ export const Footer = () => {
         <div className="max-w-[1220px] mx-auto">
           <div className="flex flex-col md:flex-row justify-between py-2">
             <div className="w-full md:w-[320px] mb-6 md:mb-0">
-              <img src="/logo.png" alt="logo" />
+              <img src="/logotip.jpg" alt="logo" className="w-14 h-14" />
               <h1 className="mt-5 text-white">Manzilimiz</h1>
               <h1 className="mt-2 text-white">
                 - Manzilimiz 190200, Angor tumani 8-Mart ko'chasi 2-uy . -
@@ -23,9 +24,15 @@ export const Footer = () => {
               </h1>
 
               <div className="mt-[45px] flex items-center gap-5">
-                <FaTelegram className="text-white size-[34px]" />
-                <FaFacebook className="text-white size-[34px]" />
-                <FaSquareInstagram className="text-white size-[34px]" />
+                <Link to={"https://www.facebook.com/angor.akm"}>
+                  <FaFacebook className="text-white size-[34px]" />
+                </Link>
+                <Link to={"www.instagram.com/angortumanakm"}>
+                  <FaSquareInstagram className="text-white size-[34px]" />
+                </Link>
+                <Link to={"https://t.me/AngortumanAKM"}>
+                  <FaTelegram className="text-white size-[34px]" />
+                </Link>
               </div>
             </div>
 

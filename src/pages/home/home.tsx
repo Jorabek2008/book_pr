@@ -62,8 +62,9 @@ export const Home = () => {
         <div className="absolute bottom-5 left-1/2 transform -translate-x-1/2 z-20 flex space-x-2">
           {images.map((_, index) => (
             <div
+              onClick={() => setCurrentImageIndex(index)}
               key={index}
-              className={`w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 lg:w-6 lg:h-6 rounded-full ${
+              className={`w-3 h-3 cursor-pointer sm:w-4 sm:h-4 md:w-5 md:h-5 lg:w-6 lg:h-6 rounded-full ${
                 currentImageIndex === index ? "bg-blue-500" : "bg-white"
               }`}
             ></div>
