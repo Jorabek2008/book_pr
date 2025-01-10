@@ -5,7 +5,7 @@ export const Location = () => {
     <div>
       <Header />
       <div>
-        <header className="bg-blue-600 text-white text-center py-4">
+        <header className="bg-blue-600 text-white text-center py-4 max-lg:mt-5">
           <h1 className="text-3xl font-bold">Manzilimiz</h1>
         </header>
 

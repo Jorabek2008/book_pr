@@ -45,19 +45,21 @@ export const Footer = () => {
               </h1>
               <div className="flex items-center gap-4 mt-[20px]">
                 <FaMapMarkedAlt className="text-[#FBD45A] size-[30px]" />
-                <h1 className="text-white text-[20px]">
+                <h1 className="text-white text-[20px] max-lg:text-base">
                   Surxondaryo viloyati Angor tumani ...
                 </h1>
               </div>
 
               <div className="flex items-center gap-4 mt-[20px]">
                 <FaPhoneAlt className="text-[#FBD45A] size-[24px]" />
-                <h1 className="text-white text-[20px]">+998 (94)-060-93 00</h1>
+                <h1 className="text-white text-[20px] max-lg:text-base">
+                  +998 (94)-060-93 00
+                </h1>
               </div>
 
               <div className="flex items-center gap-4 mt-[20px]">
                 <FaRegClock className="text-[#FBD45A] size-[35px]" />
-                <h1 className="text-white text-[20px]">
+                <h1 className="text-white text-[20px] max-lg:text-base">
                   Du-Jum 9:00 - 18:00, Shan 9:00 - 17:00, Yakshanba yopiq
                 </h1>
               </div>
@@ -71,10 +73,10 @@ export const Footer = () => {
               <div className="flex gap-4 mt-[20px]">
                 <FaPhoneAlt className="text-[#FBD45A] size-[24px]" />
                 <div className="flex flex-col">
-                  <h1 className="text-white text-[20px]">
+                  <h1 className="text-white text-[20px] max-lg:text-base">
                     +998 (91)-584-62 19
                   </h1>
-                  <h1 className="text-white text-[20px] mt-4">
+                  <h1 className="text-white text-[20px] mt-4 max-lg:text-base">
                     +998 (99)-507-36 84
                   </h1>
                 </div>
@@ -83,7 +85,7 @@ export const Footer = () => {
               <div className="flex gap-4 mt-[20px]">
                 <MdEmail className="text-[#FBD45A] size-[24px]" />
                 <div className="flex flex-col">
-                  <h1 className="text-white text-[20px] break-all">
+                  <h1 className="text-white text-[20px] break-all max-lg:text-base">
                     angorakmkutubxona@gmail.com
                   </h1>
                 </div>
