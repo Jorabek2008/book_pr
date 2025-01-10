@@ -14,8 +14,8 @@ interface IAdsProps {
 }
 
 type AdsProps = {
-  pagination: boolean; // pagination boolean tipida bo'ladi
-  data: IAdsProps[]; // data massiv bo'ladi, massiv ichidagi ma'lumotni aniqlashtirish mumkin
+  pagination: boolean;
+  data: IAdsProps[];
 };
 export const Ads: FC<AdsProps> = ({ data, pagination }) => {
   const [totalPages, setTotalPages] = useState<number>(1);
@@ -48,7 +48,7 @@ export const Ads: FC<AdsProps> = ({ data, pagination }) => {
           E'lonlar
         </h1>
         <div className="flex flex-col md:flex-row items-center flex-wrap gap-3 justify-between">
-          <div className="w-full md:w-[300px] rounded-2xl mx-2">
+          <div className="w-full rounded-2xl grid grid-cols-4 gap-x-10 gap-20">
             {loading ? (
               <div>
                 <Card className="w-[300px] p-4" radius="lg">
