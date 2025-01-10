@@ -39,7 +39,7 @@ export const Admin = () => {
       <div className="w-full h-[80px] flex justify-between items-center py-2 px-4 sm:px-8">
         <div className="w-[62px] h-[54px]">
           <Link to={"/"}>
-            <Image src="/logotip.jpg" alt="logo" className="w-16 h-16" />
+            <Image src="/logosher.jpg" alt="logo" className="w-16 h-16" />
           </Link>
         </div>
         <div className="flex items-center gap-x-4">

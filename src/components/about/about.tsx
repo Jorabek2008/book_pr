@@ -11,7 +11,7 @@ export const About = () => {
         <div className="flex flex-col sm:flex-row justify-between items-center sm:items-start">
           <div className="flex-1">
             <h3 className="text-[6vw] sm:text-[28px] mt-3 poppins-bold leading-[32px]">
-              Denov tumanidagi ushbu kutubxonada barcha turdagi kitoblarni
+              Sherabod tumanidagi ushbu kutubxonada barcha turdagi kitoblarni
               topishingiz mumkin.
             </h3>
 

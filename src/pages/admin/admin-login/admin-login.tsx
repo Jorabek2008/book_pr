@@ -26,14 +26,14 @@ export const AdminLogin = () => {
     <div className="flex flex-col md:flex-row w-full h-screen">
       <div className="w-full hidden md:w-[50%] h-[50%] md:h-full bg-[#0B6C90] md:flex justify-center items-center">
         <Image
-          src="/logotip.jpg"
+          src="/logosher.jpg"
           alt="logo"
           className="w-[80%] md:w-[431px] h-auto"
         />
       </div>
       <div className="w-full md:w-[50%] h-[50%] md:h-full bg-white flex flex-col items-center justify-center">
         <div className="w-[62px] h-[54px] mb-4 mt-60 md:mt-0">
-          <Image src="/logotip.jpg" alt="logo" />
+          <Image src="/logosher.jpg" alt="logo" />
         </div>
         <h1 className="text-[8vw] md:text-[40px] font-bold text-center">
           Login
