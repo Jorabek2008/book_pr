@@ -4,22 +4,19 @@ import { api } from "../../../../api";
 import toast from "react-hot-toast";
 import axios from "axios";
 import { Button, Image, Input } from "@nextui-org/react";
-import { FaPlus, FaTrash } from "react-icons/fa";
+import { FaTrash } from "react-icons/fa";
 
 type TGetId = {
   id: string;
 };
 
 interface FormData {
-  book_img: File[] | string[];
-  author_img: File | null;
+  image: File | null;
   title_uz: string;
   text_uz: string;
-  author: string;
-  publisher: string;
 }
 
-export const EditBook: FC<TGetId> = ({ id }) => {
+export const EditPosts: FC<TGetId> = ({ id }) => {
   const {
     handleSubmit,
     control,
@@ -30,38 +27,28 @@ export const EditBook: FC<TGetId> = ({ id }) => {
   } = useForm<FormData>();
 
   const [loading, setLoading] = useState<boolean>(false);
-  const [selectedImages, setSelectedImages] = useState<File[]>([]);
+  const [selectedImages, setSelectedImages] = useState<File | null>(null);
   const onSubmit = async (data: FormData) => {
     setLoading(true);
     const formData = new FormData();
-    if (data.author_img) {
-      formData.append("author_img", data.author_img);
-    }
-    if (data.book_img) {
-      selectedImages.forEach((file) => {
-        formData.append("book_img", file);
-      });
+    if (data.image && selectedImages) {
+      formData.append("image", selectedImages);
     }
     formData.append("title_uz", data.title_uz);
     formData.append("text_uz", data.text_uz);
-    formData.append("author", data.author);
-    formData.append("publisher", data.publisher);
-
     try {
-      await api.put(`/books/update-book/${id}`, formData, {
+      await api.put(`/posts/edit-post/${id}`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
       });
-      toast.success("Kitob muvaffaqiyatli qo'shildi");
+      toast.success("Post muvaffaqiyatli o'zgartirildi");
       reset({
-        author: "",
-        book_img: [],
-        publisher: "",
+        image: null,
         text_uz: "",
         title_uz: "",
       });
-      setSelectedImages([]);
+      setSelectedImages(null);
     } catch (error) {
       if (axios.isAxiosError(error)) {
         console.error("Axios Error:", error.message); // Axios xatoliklarini ushlash
@@ -75,13 +62,10 @@ export const EditBook: FC<TGetId> = ({ id }) => {
 
   const editBooks = async (id: string) => {
     try {
-      const response = await api.get(`/books/get-book/${id}`);
+      const response = await api.get(`/posts/get-post/${id}`);
 
-      setSelectedImages(response.data.data.book_img);
-      setValue("author", response.data.data.author);
-      setValue("author_img", response.data.data.author_img);
-      setValue("book_img", response.data.data.book_img);
-      setValue("publisher", response.data.data.publisher);
+      setSelectedImages(response.data.data.image);
+      setValue("image", response.data.data.image);
       setValue("text_uz", response.data.data.text_uz);
       setValue("title_uz", response.data.data.title_uz);
     } catch (error) {
@@ -99,11 +83,10 @@ export const EditBook: FC<TGetId> = ({ id }) => {
 
   const handleFileChange1 = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
-
     if (files) {
-      const fileArray = Array.from(files); // Convert FileList to Array
-      setSelectedImages((prevImages) => [...prevImages, ...fileArray]); // Append new files
-      setValue("book_img", [...selectedImages, ...fileArray]); // Faqat birinchi faylni saqlash
+      // Convert FileList to Array
+      setSelectedImages(files[0]); // Append new files
+      setValue("image", files[0]); // Update react-hook-form
     }
   };
 
@@ -113,12 +96,9 @@ export const EditBook: FC<TGetId> = ({ id }) => {
     }
     return URL.createObjectURL(item); // File obyektini blob URL formatiga o'zgartirish
   };
-  const handleRemoveImage = (index: number) => {
-    const newImages = selectedImages.filter(
-      (_, imgIndex) => imgIndex !== index,
-    ); // Tanlangan indexni o‘chirib tashlash
-    setSelectedImages(newImages); // Yangilangan massivni holatda saqlash
-    setValue("book_img", newImages); // Faqat birinchi faylni saqlash
+  const handleRemoveImage = () => {
+    setSelectedImages(null); // Yangilangan massivni holatda saqlash
+    setValue("image", null); // Faqat birinchi faylni saqlash
   };
   return (
     <div>
@@ -127,12 +107,11 @@ export const EditBook: FC<TGetId> = ({ id }) => {
           <Controller
             name="title_uz"
             control={control}
-            rules={{ required: "Kitobning nomini kiriting" }}
+            rules={{ required: "Postning nomini kiriting" }}
             render={({ field }) => (
               <Input
                 {...field}
-                value={field.value}
-                label={"Kitobning nomi"}
+                label={"Post nomi"}
                 size="sm"
                 isInvalid={Boolean(errors.title_uz?.message)}
                 isRequired
@@ -143,61 +122,44 @@ export const EditBook: FC<TGetId> = ({ id }) => {
           <Controller
             name="text_uz"
             control={control}
-            rules={{ required: "Kitob haqida yozing" }}
+            rules={{ required: "Post haqida yozing" }}
             render={({ field }) => (
               <Input
                 {...field}
-                label={"Kitob haqida"}
+                label={"Post haqida"}
                 size="sm"
                 isInvalid={Boolean(errors.text_uz?.message)}
                 isRequired
-                value={field.value}
                 className="mt-6"
                 errorMessage={errors.text_uz?.message as string}
               />
             )}
           />
-          <Controller
-            name="author"
-            control={control}
-            rules={{ required: "Kitob muallifini yozing" }}
-            render={({ field }) => (
-              <Input
-                {...field}
-                label={"Kitob muallifi"}
-                size="sm"
-                value={field.value}
-                isInvalid={Boolean(errors.author?.message)}
-                isRequired
-                className="mt-6"
-                errorMessage={errors.author?.message as string}
-              />
-            )}
-          />
 
+          <label htmlFor="img1" className="block mt-3">
+            Postning rasmini kiriting
+          </label>
           <input
-            id="img1"
             type="file"
             accept="image/*"
-            {...register("book_img")}
-            className="hidden"
+            id="img1"
+            {...register("image")}
             onChange={handleFileChange1}
           />
-          {selectedImages?.map((item, index) => (
-            <div className="flex items-center gap-8 my-2">
-              <Image
-                key={index}
-                src={`${getImageSrc(item)}`}
-                className="w-[200px] h-[150px] object-cover"
-              />
-              <Button color="danger" onClick={() => handleRemoveImage(index)}>
-                <FaTrash />
-              </Button>
-            </div>
-          ))}
-          <label htmlFor="img1" className=" cursor-pointer flex justify-center">
-            <FaPlus size={60} className="border-2 border-black rounded-md" />
-          </label>
+
+          <div className="flex items-center gap-3 mt-4">
+            {selectedImages && (
+              <>
+                <Image
+                  src={`${getImageSrc(selectedImages)}`}
+                  className="w-[200px] h-[150px] object-cover"
+                />
+                <Button color="danger" onPress={() => handleRemoveImage()}>
+                  <FaTrash />
+                </Button>
+              </>
+            )}
+          </div>
 
           <Button
             color="primary"
