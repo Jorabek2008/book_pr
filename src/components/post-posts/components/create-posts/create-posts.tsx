@@ -34,7 +34,7 @@ export const CreatePosts = () => {
     formData.append("title_uz", data.title_uz);
     formData.append("text_uz", data.text_uz);
     try {
-      await api.post("/books/create-book", formData, {
+      await api.post("/posts/create-post", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
