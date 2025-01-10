@@ -1,11 +1,12 @@
 import { Button, Image } from "@nextui-org/react";
 import { FaFileDownload, FaUpload } from "react-icons/fa";
 import { MdDashboard } from "react-icons/md";
-import { IoExitSharp } from "react-icons/io5";
+import { IoExitSharp, IoPeopleSharp } from "react-icons/io5";
 import { useState } from "react";
 import { AdminDashboard, PostBooks } from "../../components";
 import { Link } from "react-router-dom";
 import { PostPosts } from "../../components/post-posts";
+import { PostStaff } from "../../components/post-staff";
 
 export const Admin = () => {
   const ADMIN_MOCK = [
@@ -26,6 +27,12 @@ export const Admin = () => {
       name: "Post yuklash",
       shares: "/postPosts",
       icon: <FaUpload size={20} />,
+    },
+    {
+      id: 4,
+      name: "Xodim yuklash",
+      shares: "/postStaff",
+      icon: <IoPeopleSharp  size={20} />,
     },
   ];
   const [active, setActive] = useState("/dashboard");
@@ -86,6 +93,7 @@ export const Admin = () => {
             {active === "/dashboard" && <AdminDashboard />}
             {active === "/postBooks" && <PostBooks />}
             {active === "/postPosts" && <PostPosts />}
+            {active === "/postStaff" && <PostStaff />}
           </div>
         </div>
       </div>
