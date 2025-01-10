@@ -88,7 +88,7 @@ export const PostBooks = () => {
         <Modal
           size="2xl"
           scrollBehavior="outside"
-          className="w-full sm:w-[650px] h-auto overflow-y-scroll"
+          className="w-full sm:w-[650px] h-auto"
           isOpen={isOpen}
           onClose={() => setIsOpen(false)}
         >
@@ -101,7 +101,7 @@ export const PostBooks = () => {
         <Modal
           size="2xl"
           scrollBehavior="outside"
-          className="w-full sm:w-[650px] h-auto overflow-y-scroll"
+          className="w-full sm:w-[650px] h-auto"
           isOpen={isOpenEdit}
           onClose={() => setIsOpenEdit(false)}
         >

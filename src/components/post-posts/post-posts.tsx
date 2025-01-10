@@ -85,7 +85,7 @@ export const PostPosts = () => {
         <Modal
           size="2xl"
           scrollBehavior="outside"
-          className="w-full sm:w-[650px] h-auto overflow-y-scroll"
+          className="w-full sm:w-[650px] h-auto"
           isOpen={isOpen}
           onClose={() => setIsOpen(false)}
         >
@@ -98,7 +98,7 @@ export const PostPosts = () => {
         <Modal
           size="2xl"
           scrollBehavior="outside"
-          className="w-full sm:w-[650px] h-auto overflow-y-scroll"
+          className="w-full sm:w-[650px] h-auto"
           isOpen={isOpenEdit}
           onClose={() => setIsOpenEdit(false)}
         >
@@ -155,7 +155,7 @@ export const PostPosts = () => {
                   <div className="flex gap-2">
                     <Button
                       color="primary"
-                      onClick={() => {
+                      onPress={() => {
                         setIsOpenEdit(true);
                         setIdClick(row.id);
                       }}
@@ -166,7 +166,7 @@ export const PostPosts = () => {
 
                     <Button
                       color="danger"
-                      onClick={() => handleActionClickRemove(row.id)}
+                      onPress={() => handleActionClickRemove(row.id)}
                     >
                       <FaTrash />
                     </Button>
