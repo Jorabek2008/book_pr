@@ -39,7 +39,7 @@ export const GetAllBooks: FC<AdsProps> = ({ pagination }) => {
       setTotalPages(Math.ceil(response.data.pagination.total / limit));
     } catch (error) {
       if (axios.isAxiosError(error)) {
-        console.error("Axios Error:", error.message); // Axios xatoliklarini ushlash
+        console.error("Axios Error:", error.message);
       } else {
         toast.error("Error" + error);
       }
@@ -52,7 +52,7 @@ export const GetAllBooks: FC<AdsProps> = ({ pagination }) => {
     getAllBooks(current);
   }, [current]);
   return (
-    <div className="max-w-[1200px] mx-auto pt-[54px] pb-[75px]">
+    <div className="max-w-[1200px] mx-auto pt-[54px] pb-[75px] max-lg:p-10">
       {loading ? (
         <div>
           <Card className="w-[300px] p-4" radius="lg">

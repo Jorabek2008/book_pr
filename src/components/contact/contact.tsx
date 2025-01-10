@@ -47,7 +47,7 @@ export const Contact = () => {
   return (
     <div>
       <div className="max-w-[1200px] mx-auto py-[25px]">
-        <h1 className="text-[8vw] sm:text-[38px] text-[#030522] poppins-bold leading-[61px]">
+        <h1 className="text-[8vw] sm:text-[38px] text-[#030522] poppins-bold leading-[61px] max-lg:ml-[15%]">
           Aloqa
         </h1>
 
@@ -122,7 +122,7 @@ export const Contact = () => {
               <Button
                 type="submit"
                 isLoading={loading}
-                className="bg-[#030522] text-white mt-3 w-full"
+                className="bg-[#030522] text-white mt-3 w-full max-lg:mb-5 max-lg:mt-5"
               >
                 Boshlash
               </Button>

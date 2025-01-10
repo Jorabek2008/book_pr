@@ -38,13 +38,12 @@ export const Ads: FC<AdsProps> = ({ data, pagination }) => {
       setLoading(false);
     }
   }, []);
-  // console.log(current);
   useEffect(() => {
     fetchAnswers(current);
   }, [fetchAnswers]);
   return (
     <div>
-      <div className="max-w-[1200px] mx-auto py-[60px]">
+      <div className="max-w-[1200px] mx-auto py-[60px] max-lg:p-10">
         <h1 className="text-[8vw] sm:text-[38px] poppins-bold leading-[61px] mb-[21px]">
           E'lonlar
         </h1>
