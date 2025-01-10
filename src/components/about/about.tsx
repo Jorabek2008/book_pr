@@ -59,7 +59,7 @@ export const About = () => {
           </div>
 
           <Image
-            src="/weAbout.png"
+            src="/homeImg.webp"
             className="w-full sm:w-[557px] h-auto mt-4 sm:mt-0"
             alt="libaryBg"
           />
