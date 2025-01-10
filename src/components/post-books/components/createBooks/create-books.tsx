@@ -8,11 +8,9 @@ import { FaTrash } from "react-icons/fa";
 
 interface FormData {
   book_img: File[] | null;
-  author_img: File[] | null;
   title_uz: string;
   text_uz: string;
   author: string;
-  publisher: string;
 }
 export const CreateBooks = () => {
   const {
@@ -23,7 +21,6 @@ export const CreateBooks = () => {
     setValue,
     formState: { errors },
   } = useForm<FormData>();
-  const [authorImg, setAuthorImg] = useState<File[]>([]);
 
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -31,11 +28,7 @@ export const CreateBooks = () => {
   const onSubmit = async (data: FormData) => {
     setLoading(true);
     const formData = new FormData();
-    if (data.author_img) {
-      authorImg.forEach((file) => {
-        formData.append("author_img", file);
-      });
-    }
+
     if (data.book_img) {
       selectedImages.forEach((file) => {
         formData.append("book_img", file);
@@ -44,25 +37,22 @@ export const CreateBooks = () => {
     formData.append("title_uz", data.title_uz);
     formData.append("text_uz", data.text_uz);
     formData.append("author", data.author);
-    formData.append("publisher", data.publisher);
 
     try {
       await api.post("/books/create-book", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
+        withCredentials: true,
       });
       toast.success("Kitob muvaffaqiyatli qo'shildi");
       reset({
         author: "",
-        author_img: [],
         book_img: [],
-        publisher: "",
         text_uz: "",
         title_uz: "",
       });
       setSelectedImages([]);
-      setAuthorImg([]);
     } catch (error) {
       if (axios.isAxiosError(error)) {
         console.error("Axios Error:", error.message); // Axios xatoliklarini ushlash
@@ -136,21 +126,6 @@ export const CreateBooks = () => {
             />
           )}
         />
-        <Controller
-          name="publisher"
-          control={control}
-          rules={{ required: "Nashriyotchini kiriting" }}
-          render={({ field }) => (
-            <Input
-              {...field}
-              label={"Nashriyotchi"}
-              size="sm"
-              isInvalid={Boolean(errors.publisher?.message)}
-              className="mt-6 mb-10"
-              errorMessage={errors.publisher?.message as string}
-            />
-          )}
-        />
 
         <label htmlFor="img1" className="block mb-3">
           Kitobning rasmlarini kiriting
@@ -167,7 +142,7 @@ export const CreateBooks = () => {
           <div key={index} className="flex items-center justify-between">
             <p>{img.name}</p>
             <Image
-              src={`${URL.createObjectURL(img)}`}
+              src={URL.createObjectURL(img) || ""}
               alt="Selected"
               style={{ width: "100px", height: "100px" }}
             />

@@ -1,12 +1,13 @@
 import { Button, Image } from "@nextui-org/react";
 import { FaFileDownload, FaUpload } from "react-icons/fa";
-import { MdDashboard } from "react-icons/md";
+import { MdDashboard, MdNotifications } from "react-icons/md";
 import { IoExitSharp, IoPeopleSharp } from "react-icons/io5";
 import { useState } from "react";
 import { AdminDashboard, PostBooks } from "../../components";
 import { Link } from "react-router-dom";
 import { PostPosts } from "../../components/post-posts";
 import { PostStaff } from "../../components/post-staff";
+import { Notification } from "../../components/notification";
 
 export const Admin = () => {
   const ADMIN_MOCK = [
@@ -32,14 +33,19 @@ export const Admin = () => {
       id: 4,
       name: "Xodim yuklash",
       shares: "/postStaff",
-      icon: <IoPeopleSharp  size={20} />,
+      icon: <IoPeopleSharp size={20} />,
+    },
+    {
+      id: 5,
+      name: "Xabarlar",
+      shares: "/notification",
+      icon: <MdNotifications size={20} />,
     },
   ];
   const [active, setActive] = useState("/dashboard");
 
   const logOutBtn = () => {
-    localStorage.removeItem("userId");
-    location.reload();
+      
   };
   return (
     <div>
@@ -94,6 +100,7 @@ export const Admin = () => {
             {active === "/postBooks" && <PostBooks />}
             {active === "/postPosts" && <PostPosts />}
             {active === "/postStaff" && <PostStaff />}
+            {active === "/notification" && <Notification />}
           </div>
         </div>
       </div>
