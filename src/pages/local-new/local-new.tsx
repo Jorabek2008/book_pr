@@ -45,7 +45,10 @@ export const LocalNew = () => {
                 Bibliografik qo'llanmalar:
               </h1>
               {bibliograp.map((item) => (
-                <div key={item.id} className="border-2 border-black mt-5 p-2">
+                <div
+                  key={item.id}
+                  className="border-2 border-black mt-5 p-2 max-lg:mb-10 max-lg:mt-10"
+                >
                   {item.link ? (
                     <h1 className="text-primary">
                       <Link
@@ -64,8 +67,6 @@ export const LocalNew = () => {
                       <h1>{item.title}</h1>
                     </Link>
                   )}
-
-                  {/* <h1>{item.updateAt}</h1> */}
                 </div>
               ))}
             </div>

@@ -8,7 +8,6 @@ interface Ad {
   image: string;
   createdAt: string;
   view_count: number;
-  // Add other fields as needed
 }
 
 interface IAdsState {

@@ -84,8 +84,8 @@ export const CreateBooks = () => {
   };
   const handleRemoveImage = (index: number) => {
     const updatedImages = selectedImages.filter((_, i) => i !== index);
-    setSelectedImages(updatedImages); // Mahalliy holatni yangilash
-    setValue("book_img", updatedImages); // React Hook Form qiymatini yangilash
+    setSelectedImages(updatedImages);
+    setValue("book_img", updatedImages);
   };
 
   return (

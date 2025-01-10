@@ -12,7 +12,6 @@ const INITIAL_STATE = {
 interface LoginData {
   email: string;
   password: string;
-  // Add other fields as needed
 }
 
 export const loginAdmin = createAsyncThunk(
