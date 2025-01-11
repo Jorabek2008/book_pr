@@ -1,7 +1,7 @@
 import { api } from "../../api";
 
 class LogoutServices {
-  async logout(success: any, message: any) {
+  async logout(success: string, message: string) {
     try {
       const response = await api.get("/auth/logout", {
         params: {
