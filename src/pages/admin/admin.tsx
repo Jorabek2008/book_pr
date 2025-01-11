@@ -9,7 +9,6 @@ import { PostPosts } from "../../components/post-posts";
 import { PostStaff } from "../../components/post-staff";
 import { Notification } from "../../components/notification";
 import { api } from "../../api";
-// import { logoutService } from "../../redux/services/logout.service";
 
 export const Admin = () => {
   const ADMIN_MOCK = [
@@ -50,6 +49,7 @@ export const Admin = () => {
     try {
       await api.get("/auth/logout");
       window.location.href = "/";
+      localStorage.removeItem("userId");
     } catch (error) {
       console.log(error);
     }
