@@ -1,19 +1,29 @@
-import { ReactNode } from "react";
+import { ReactNode, useEffect } from "react";
 import toast from "react-hot-toast";
+import { useGetUser } from "../../../../hooks";
+import { useNavigate } from "react-router-dom";
 
 interface AdminLoginProtectedProps {
   children: ReactNode;
 }
 
 export const AdminLoginProtected = ({ children }: AdminLoginProtectedProps) => {
-  const isLoggedIn = localStorage.getItem("userId");
+  const user = useGetUser(); // Redux'dan foydalanuvchini olish
+  const navigate = useNavigate(); // React Router navigatsiyasi
 
-  if (!isLoggedIn) {
-    toast.error("Please login first");
-    return children;
+  useEffect(() => {
+    if (user) {
+      // Login qilingan foydalanuvchilar uchun
+      toast.success("Siz allaqachon login qilgansiz");
+      navigate("/admin"); // Admin sahifasiga yo‘naltirish
+    }
+  }, [user, navigate]);
+
+  if (user) {
+    // Login qilingan foydalanuvchilarni admin sahifasiga o‘tkazgan bo‘lsa, tarkibni ko‘rsatmaydi
+    return null;
   }
-  if (isLoggedIn) {
-    toast.success("You are already logged in");
-    location.replace("/admin");
-  }
+
+  // Login qilmagan foydalanuvchilar uchun bolalar komponentlarini ko‘rsatish
+  return children;
 };

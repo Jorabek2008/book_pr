@@ -15,6 +15,8 @@ import { userService } from "./redux/services";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { setUser } from "./redux/slice/user";
+import { OneBooks } from "./components/get-all-books/one-books";
+import { OneAds } from "./components/ads/one-ads";
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -54,6 +56,8 @@ export const App = () => {
             </AdminLoginProtected>
           }
         />
+        <Route path="/one-book/:bookId" element={<OneBooks />} />
+        <Route path="/one-ads/:adsId" element={<OneAds />} />
         <Route path="/location" element={<Location />} />
         <Route path="/management" element={<Management />} />
         <Route path="/admin-dashboard" element={<AdminDashboard />} />
