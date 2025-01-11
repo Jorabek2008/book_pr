@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { getAdsService } from "../service";
+import { getAdsService } from "../services";
 import toast from "react-hot-toast";
 
 interface Ad {

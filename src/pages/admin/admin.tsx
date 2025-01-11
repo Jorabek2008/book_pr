@@ -8,6 +8,8 @@ import { Link } from "react-router-dom";
 import { PostPosts } from "../../components/post-posts";
 import { PostStaff } from "../../components/post-staff";
 import { Notification } from "../../components/notification";
+import { api } from "../../api";
+// import { logoutService } from "../../redux/services/logout.service";
 
 export const Admin = () => {
   const ADMIN_MOCK = [
@@ -44,9 +46,15 @@ export const Admin = () => {
   ];
   const [active, setActive] = useState("/dashboard");
 
-  const logOutBtn = () => {
-      
+  const logOutBtn = async () => {
+    try {
+      await api.get("/auth/logout");
+      window.location.href = "/";
+    } catch (error) {
+      console.log(error);
+    }
   };
+
   return (
     <div>
       <div className="w-full h-[80px] flex justify-between items-center py-2 px-4 sm:px-8">
@@ -58,7 +66,7 @@ export const Admin = () => {
         <div className="flex items-center gap-x-4">
           <Image src="/user1.png" className="w-[35px] h-[35px] ml-2" />
           <Button
-            onClick={() => logOutBtn()}
+            onClick={logOutBtn}
             className="bg-primary text-white rounded-[40px] px-4 py-2 hidden sm:flex"
           >
             Logout
@@ -81,7 +89,7 @@ export const Admin = () => {
             </Button>
           ))}
           <Button
-            onClick={() => logOutBtn()}
+            onClick={logOutBtn}
             className={`flex items-center justify-start text-[18px] sm:text-[20px] hover:bg-primary transition-all duration-300 ease-linear text-black hover:text-white rounded-lg p-2`}
           >
             <div className="flex gap-3 items-center">

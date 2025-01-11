@@ -11,26 +11,25 @@ import {
 import { AdminDashboard } from "./components";
 import { Toaster } from "react-hot-toast";
 import { AdminLoginProtected, AdminProtected } from "./pages/admin";
-import { userService } from "./redux/service";
+import { userService } from "./redux/services";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { setUser } from "./redux/slice/user";
 
 export const App = () => {
-  const dispatch = useDispatch()
-  const getUser = async ()=> {
-    try{
-      const reponse = await userService()
-      dispatch(setUser(reponse.user))
-    }catch(err){
+  const dispatch = useDispatch();
+  const getUser = async () => {
+    try {
+      const reponse = await userService();
+      dispatch(setUser(reponse.user));
+    } catch (err) {
       console.log(err);
-      
     }
-  }
+  };
 
-  useEffect(()=>{
-    getUser()
-  },[])
+  useEffect(() => {
+    getUser();
+  }, []);
 
   return (
     <div>

@@ -33,7 +33,7 @@ export const Notification = () => {
       setallPosts(response.data.data);
     } catch (error) {
       if (axios.isAxiosError(error)) {
-        console.error("Axios Error:", error.message); // Axios xatoliklarini ushlash
+        console.error("Axios Error:", error.message);
       } else {
         toast.error("Error" + error);
       }
@@ -55,7 +55,7 @@ export const Notification = () => {
       }
     } catch (error) {
       if (axios.isAxiosError(error)) {
-        console.error("Axios Error:", error.message); // Axios xatoliklarini ushlash
+        console.error("Axios Error:", error.message);
       } else {
         toast.error("Error" + error);
       }
@@ -113,7 +113,7 @@ export const Notification = () => {
                   <div className="flex gap-2">
                     <Button
                       color="danger"
-                      onClick={() => handleActionClickRemove(row.id)}
+                      onPress={() => handleActionClickRemove(row.id)}
                     >
                       <FaTrash />
                     </Button>
