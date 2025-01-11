@@ -1,9 +1,9 @@
 import { Button, Image, Input } from "@nextui-org/react";
 import { useForm, Controller } from "react-hook-form";
-import { loginAdmin } from "../../../redux/slice/login-admin-slice";
-import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "../../../redux/store"; // Import the AppDispatch type
+import { RootState } from "../../../redux/store"; // Import the AppDispatch type
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { api } from "../../../api";
 
 interface FormData {
   email: string;
@@ -11,15 +11,19 @@ interface FormData {
 }
 
 export const AdminLogin = () => {
-  const dispatch = useDispatch<AppDispatch>();
   const {
     handleSubmit,
     control,
     formState: { errors },
   } = useForm<FormData>();
   const { loading } = useSelector((state: RootState) => state.loginAdmin);
-  const onSubmit = (data: FormData) => {
-    dispatch(loginAdmin({ email: data.email, password: data.password }));
+  const onSubmit = async () => {
+    try {
+      await api.post("/auth/login");
+      window.location.href = "/admin";
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (

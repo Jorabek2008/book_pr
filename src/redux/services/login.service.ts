@@ -8,7 +8,7 @@ class LoginServices {
         phone,
         password,
       });
-      return response;
+      return response?.data;
     } catch (error) {
       return error;
     }
