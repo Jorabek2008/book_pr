@@ -8,7 +8,7 @@ import {
   Location,
   Management,
 } from "./pages";
-import { AdminDashboard } from "./components";
+import { AdminDashboard, ChangePassword } from "./components";
 import { Toaster } from "react-hot-toast";
 import { AdminLoginProtected, AdminProtected } from "./pages/admin";
 import { userService } from "./redux/services";
@@ -61,6 +61,7 @@ export const App = () => {
         <Route path="/location" element={<Location />} />
         <Route path="/management" element={<Management />} />
         <Route path="/admin-dashboard" element={<AdminDashboard />} />
+        <Route path="/change-password" element={<ChangePassword />} />
       </Routes>
     </div>
   );

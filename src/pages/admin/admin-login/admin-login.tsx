@@ -17,9 +17,10 @@ export const AdminLogin = () => {
     formState: { errors },
   } = useForm<FormData>();
   const { loading } = useSelector((state: RootState) => state.loginAdmin);
-  const onSubmit = async () => {
+
+  const onSubmit = async (data: FormData) => {
     try {
-      await api.post("/auth/login");
+      await api.post("/auth/login", data);
       window.location.href = "/admin";
     } catch (error) {
       console.log(error);
@@ -87,9 +88,14 @@ export const AdminLogin = () => {
             >
               {loading ? "Loading..." : "Login"}
             </Button>
-            <Link to={"/"} className="mt-3 text-primary">
-              Bosh sahifaga o'tish
-            </Link>
+            <div className="flex justify-between gap-x-[310px]">
+              <Link to={"/"} className="mt-3 text-primary">
+                Bosh sahifaga o'tish
+              </Link>
+              <Link to={"/change-password"} className="mt-3 text-primary">
+                Passwordni o'zgartirish
+              </Link>
+            </div>
           </div>
         </form>
       </div>

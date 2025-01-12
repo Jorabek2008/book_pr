@@ -42,7 +42,7 @@ export const EditStaff: FC<TForm> = ({ id }) => {
     formData.append("position", data.position);
 
     try {
-      await api.put(`/posts/edit-post/${id.id}`, formData, {
+      await api.put(`/staff/${id.id}`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -58,7 +58,7 @@ export const EditStaff: FC<TForm> = ({ id }) => {
       setSelectedImages(null);
     } catch (error) {
       if (axios.isAxiosError(error)) {
-        console.error("Axios Error:", error.message); // Axios xatoliklarini ushlash
+        console.error("Axios Error:", error.message);
       } else {
         toast.error("Error" + error);
       }
@@ -82,7 +82,6 @@ export const EditStaff: FC<TForm> = ({ id }) => {
   const handleFileChange1 = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
     if (files) {
-      // Convert FileList to Array
       setSelectedImages(files[0]); // Append new files
       setValue("avatar", files[0]); // Update react-hook-form
     }
@@ -90,9 +89,9 @@ export const EditStaff: FC<TForm> = ({ id }) => {
 
   const getImageSrc = (item: string | File): string => {
     if (typeof item === "string") {
-      return item; // URL formatidagi rasm
+      return item;
     }
-    return URL.createObjectURL(item); // File obyektini blob URL formatiga o'zgartirish
+    return URL.createObjectURL(item);
   };
   const handleRemoveImage = () => {
     setSelectedImages(null); // Yangilangan massivni holatda saqlash
