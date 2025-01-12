@@ -1,6 +1,5 @@
 import { api } from "../../api";
 
-/* eslint-disable no-unused-vars */
 class LoginServices {
   async login(phone: string, password: string) {
     try {
