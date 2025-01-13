@@ -4,15 +4,15 @@ import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { api } from "../../../../api";
 import toast, { Toaster } from "react-hot-toast";
-import { FaTrash } from "react-icons/fa";
 
 interface FormData {
-  book_img: File[] | null;
+  id: string;
   title_uz: string;
+  image: File | null;
+  view_count: string;
   text_uz: string;
-  author: string;
 }
-export const CreateBooks = () => {
+export const CreatePosts = () => {
   const {
     handleSubmit,
     control,
@@ -24,35 +24,28 @@ export const CreateBooks = () => {
 
   const [loading, setLoading] = useState<boolean>(false);
 
-  const [selectedImages, setSelectedImages] = useState<File[]>([]);
+  const [selectedImages, setSelectedImages] = useState<File | null>(null);
   const onSubmit = async (data: FormData) => {
     setLoading(true);
     const formData = new FormData();
-
-    if (data.book_img) {
-      selectedImages.forEach((file) => {
-        formData.append("book_img", file);
-      });
+    if (data.image && selectedImages) {
+      formData.append("image", selectedImages);
     }
     formData.append("title_uz", data.title_uz);
     formData.append("text_uz", data.text_uz);
-    formData.append("author", data.author);
-
     try {
-      await api.post("/books/create-book", formData, {
+      await api.post("/posts/create-post", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
-        withCredentials: true,
       });
-      toast.success("Kitob muvaffaqiyatli qo'shildi");
+      toast.success("Post muvaffaqiyatli qo'shildi");
       reset({
-        author: "",
-        book_img: [],
+        image: null,
         text_uz: "",
         title_uz: "",
       });
-      setSelectedImages([]);
+      setSelectedImages(null);
     } catch (error) {
       if (axios.isAxiosError(error)) {
         console.error("Axios Error:", error.message); // Axios xatoliklarini ushlash
@@ -67,15 +60,10 @@ export const CreateBooks = () => {
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
     if (files) {
-      const fileArray = Array.from(files); // Convert FileList to Array
-      setSelectedImages((prevImages) => [...prevImages, ...fileArray]); // Append new files
-      setValue("book_img", [...selectedImages, ...fileArray]); // Update react-hook-form
+      // Convert FileList to Array
+      setSelectedImages(files[0]); // Append new files
+      setValue("image", files[0]); // Update react-hook-form
     }
-  };
-  const handleRemoveImage = (index: number) => {
-    const updatedImages = selectedImages.filter((_, i) => i !== index);
-    setSelectedImages(updatedImages);
-    setValue("book_img", updatedImages);
   };
 
   return (
@@ -85,13 +73,14 @@ export const CreateBooks = () => {
         <Controller
           name="title_uz"
           control={control}
-          rules={{ required: "Kitobning nomini kiriting" }}
+          rules={{ required: "Postning nomini kiriting" }}
           render={({ field }) => (
             <Input
               {...field}
-              label={"Kitobning nomi"}
+              label={"Post nomi"}
               size="sm"
               isInvalid={Boolean(errors.title_uz?.message)}
+              isRequired
               errorMessage={errors.title_uz?.message as string}
             />
           )}
@@ -99,65 +88,46 @@ export const CreateBooks = () => {
         <Controller
           name="text_uz"
           control={control}
-          rules={{ required: "Kitob haqida yozing" }}
+          rules={{ required: "Post haqida yozing" }}
           render={({ field }) => (
             <Input
               {...field}
-              label={"Kitob haqida"}
+              label={"Post haqida"}
               size="sm"
               isInvalid={Boolean(errors.text_uz?.message)}
+              isRequired
               className="mt-6"
               errorMessage={errors.text_uz?.message as string}
             />
           )}
         />
-        <Controller
-          name="author"
-          control={control}
-          rules={{ required: "Kitob muallifini yozing" }}
-          render={({ field }) => (
-            <Input
-              {...field}
-              label={"Kitob muallifi"}
-              size="sm"
-              isInvalid={Boolean(errors.author?.message)}
-              className="mt-6"
-              errorMessage={errors.author?.message as string}
-            />
-          )}
-        />
 
-        <label htmlFor="img1" className="block mb-3">
-          Kitobning rasmlarini kiriting
+        <label htmlFor="img1" className="block mt-3">
+          Postning rasmini kiriting
         </label>
         <input
           type="file"
           accept="image/*"
           id="img1"
-          multiple
-          {...register("book_img")}
+          {...register("image")}
           onChange={handleFileChange}
         />
-        {selectedImages.map((img, index) => (
-          <div key={index} className="flex items-center justify-between">
-            <p>{img.name}</p>
+
+        <div className="flex items-center justify-between">
+          {selectedImages && (
             <Image
-              src={URL.createObjectURL(img) || ""}
+              src={`${URL.createObjectURL(selectedImages)}`}
               alt="Selected"
               style={{ width: "100px", height: "100px" }}
             />
-
-            <Button color="danger" onClick={() => handleRemoveImage(index)}>
-              <FaTrash />
-            </Button>
-          </div>
-        ))}
+          )}
+        </div>
 
         <Button
           color="primary"
           isLoading={loading}
           type="submit"
-          className="mt-10 w-full max-lg:mb-5"
+          className="mt-10 w-full"
         >
           Yuborish
         </Button>

@@ -2,7 +2,7 @@ import { Card, Image, Pagination, Skeleton } from "@nextui-org/react";
 import { AxiosError } from "axios";
 import { FC, useCallback, useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import { FaRegEye } from "react-icons/fa";
+import { FaCalendar, FaRegEye } from "react-icons/fa";
 import { api } from "../../api";
 
 interface IAdsProps {
@@ -14,13 +14,14 @@ interface IAdsProps {
 }
 
 type AdsProps = {
-  pagination: boolean; // pagination boolean tipida bo'ladi
-  data: IAdsProps[]; // data massiv bo'ladi, massiv ichidagi ma'lumotni aniqlashtirish mumkin
+  pagination: boolean;
+  data: IAdsProps[];
 };
 export const Ads: FC<AdsProps> = ({ data, pagination }) => {
   const [totalPages, setTotalPages] = useState<number>(1);
   const [current, setCurrent] = useState<number>(1);
   const [loading, setLoading] = useState<boolean>(false);
+  const [allPosts, setAllPosts] = useState<IAdsProps[]>([]);
 
   const fetchAnswers = useCallback(async (page = 1, limit = 10) => {
     setLoading(true);
@@ -28,6 +29,8 @@ export const Ads: FC<AdsProps> = ({ data, pagination }) => {
       const response = await api.get("/posts/get-all-posts", {
         params: { page, limit },
       });
+      setAllPosts(response.data.data);
+
       setTotalPages(Math.ceil(response.data.pagination.total / limit));
     } catch (error) {
       const errorMessage =
@@ -40,7 +43,9 @@ export const Ads: FC<AdsProps> = ({ data, pagination }) => {
   }, []);
   useEffect(() => {
     fetchAnswers(current);
-  }, [fetchAnswers]);
+    setAllPosts(data);
+  }, [current, data]);
+
   return (
     <div>
       <div className="max-w-[1200px] mx-auto py-[60px] max-lg:p-10">
@@ -69,27 +74,37 @@ export const Ads: FC<AdsProps> = ({ data, pagination }) => {
                 </Card>
               </div>
             ) : (
-              data?.map((item) => (
-                <Card key={item.id} className="w-[300px]">
-                  <div className="relative">
-                    <Image
-                      src={`${item.image}`}
-                      className="w-[300px] h-[230px] object-cover rounded-t-xl rounded-b-none"
-                    />
-                  </div>
-                  <div className="ml-4 mb-6">
-                    <h1 className="text-[6vw] md:text-[22px] poppins-bold leading-[32px] text-[#030522] my-[16px]">
-                      {item.title_uz}
-                    </h1>
+              allPosts?.map((item) => (
+                <div
+                  key={item.id}
+                  className="cursor-pointer"
+                  onClick={() => location.replace(`/one-ads/${item.id}`)}
+                >
+                  <Card className="w-[200px] sm:w-[230px] md:w-[300px]">
+                    <div className="relative">
+                      <Image
+                        src={`${item.image}`}
+                        className="w-[300px] h-[230px] object-cover rounded-t-xl rounded-b-none"
+                      />
+                    </div>
+                    <div className="ml-4 mb-6">
+                      <h1 className="text-[6vw] hyphens-auto md:text-[22px] poppins-bold leading-[32px] text-[#030522] my-[16px]">
+                        {item.title_uz}
+                      </h1>
 
-                    <div className="flex items-center gap-[35px] mt-[27px]">
-                      <div className="flex items-center gap-2 text-[#0000009E] poppins-medium">
-                        <FaRegEye size={17} />
-                        {item.view_count}
+                      <div className="flex items-center gap-[35px] mt-[27px]">
+                        <div className="flex items-center hyphens-auto gap-2 text-[#0000009E] poppins-medium">
+                          <FaRegEye size={17} />
+                          {item.view_count}
+                        </div>
+                        <div className="flex items-center hyphens-auto gap-2 text-[#0000009E] poppins-medium">
+                          <FaCalendar size={17} />
+                          {item.createdAt.slice(0, 10)}
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </Card>
+                  </Card>
+                </div>
               ))
             )}
           </div>

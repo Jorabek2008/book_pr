@@ -1,11 +1,14 @@
 import { Button, Image } from "@nextui-org/react";
 import { FaFileDownload, FaUpload } from "react-icons/fa";
-import { MdDashboard } from "react-icons/md";
-import { IoExitSharp } from "react-icons/io5";
+import { MdDashboard, MdNotifications } from "react-icons/md";
+import { IoExitSharp, IoPeopleSharp } from "react-icons/io5";
 import { useState } from "react";
 import { AdminDashboard, PostBooks } from "../../components";
 import { Link } from "react-router-dom";
 import { PostPosts } from "../../components/post-posts";
+import { PostStaff } from "../../components/post-staff";
+import { Notification } from "../../components/notification";
+import { api } from "../../api";
 
 export const Admin = () => {
   const ADMIN_MOCK = [
@@ -27,13 +30,31 @@ export const Admin = () => {
       shares: "/postPosts",
       icon: <FaUpload size={20} />,
     },
+    {
+      id: 4,
+      name: "Xodim yuklash",
+      shares: "/postStaff",
+      icon: <IoPeopleSharp size={20} />,
+    },
+    {
+      id: 5,
+      name: "Xabarlar",
+      shares: "/notification",
+      icon: <MdNotifications size={20} />,
+    },
   ];
   const [active, setActive] = useState("/dashboard");
 
-  const logOutBtn = () => {
-    localStorage.removeItem("userId");
-    location.reload();
+  const logOutBtn = async () => {
+    try {
+      await api.get("/auth/logout");
+      window.location.href = "/";
+      localStorage.removeItem("userId");
+    } catch (error) {
+      console.log(error);
+    }
   };
+
   return (
     <div>
       <div className="w-full h-[80px] flex justify-between items-center py-2 px-4 sm:px-8">
@@ -45,7 +66,7 @@ export const Admin = () => {
         <div className="flex items-center gap-x-4">
           <Image src="/user1.png" className="w-[35px] h-[35px] ml-2" />
           <Button
-            onClick={() => logOutBtn()}
+            onClick={logOutBtn}
             className="bg-primary text-white rounded-[40px] px-4 py-2 hidden sm:flex"
           >
             Logout
@@ -68,7 +89,7 @@ export const Admin = () => {
             </Button>
           ))}
           <Button
-            onClick={() => logOutBtn()}
+            onClick={logOutBtn}
             className={`flex items-center justify-start text-[18px] sm:text-[20px] hover:bg-primary transition-all duration-300 ease-linear text-black hover:text-white rounded-lg p-2`}
           >
             <div className="flex gap-3 items-center">
@@ -86,6 +107,8 @@ export const Admin = () => {
             {active === "/dashboard" && <AdminDashboard />}
             {active === "/postBooks" && <PostBooks />}
             {active === "/postPosts" && <PostPosts />}
+            {active === "/postStaff" && <PostStaff />}
+            {active === "/notification" && <Notification />}
           </div>
         </div>
       </div>

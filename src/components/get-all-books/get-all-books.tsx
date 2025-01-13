@@ -10,6 +10,7 @@ import {
   Pagination,
   Skeleton,
 } from "@nextui-org/react";
+import { FaCalendar } from "react-icons/fa";
 
 interface IGetAllBooks {
   author: string;
@@ -18,6 +19,7 @@ interface IGetAllBooks {
   id: string;
   text_uz: string;
   title_uz: string;
+  createdAt: string;
 }
 type AdsProps = {
   pagination: boolean;
@@ -76,25 +78,33 @@ export const GetAllBooks: FC<AdsProps> = ({ pagination }) => {
         <>
           <div className="grid grid-cols-4 gap-10">
             {allBooks.map((item) => (
-              <Card key={item.id} className="w-[300px]">
-                <CardBody className="w-full">
-                  {item.book_img.slice(0, 1).map((item1) => (
-                    <Image
-                      src={`${item1}`}
-                      className="object-cover w-[300px] h-[230px]"
-                    />
-                  ))}
-                </CardBody>
-                <div className="p-[12px]">
-                  <h1 className="text-[6vw] md:text-[22px] font-semibold text-left">
-                    {item.title_uz}
-                  </h1>
-                  <h1>{item.text_uz}</h1>
-                </div>
-                <CardFooter className="">
-                  <h1 className="text-[6vw] md:text-[22px]">{item.author}</h1>
-                </CardFooter>
-              </Card>
+              <div
+                className=" cursor-pointer"
+                key={item.id}
+                onClick={() => location.replace(`/one-book/${item.id}`)}
+              >
+                <Card className="w-[200px] sm:w-[230px] md:w-[300px]">
+                  <CardBody className="w-full">
+                    {item.book_img.slice(0, 1).map((item1) => (
+                      <Image
+                        src={`${item1}`}
+                        className="object-cover w-[300px] h-[230px]"
+                      />
+                    ))}
+                  </CardBody>
+                  <div className="p-[12px]">
+                    <h1 className="text-[6vw] hyphens-auto md:text-[22px] font-semibold text-left">
+                      {item.title_uz}
+                    </h1>
+                  </div>
+                  <CardFooter>
+                    <div className="flex items-center hyphens-auto gap-2 text-[#0000009E] poppins-medium">
+                      <FaCalendar size={17} />
+                      {item.createdAt.slice(0, 10)}
+                    </div>
+                  </CardFooter>
+                </Card>
+              </div>
             ))}
           </div>
         </>

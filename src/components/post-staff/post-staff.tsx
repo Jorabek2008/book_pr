@@ -15,30 +15,29 @@ import {
 import { useEffect, useState } from "react";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import { MdPublish } from "react-icons/md";
-import { CreateBooks } from "./components";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { api } from "../../api";
-import { EditBook } from "./components/edit-book";
+import { CreateStaff, EditStaff } from "./components";
 
-interface IGetAllBooks {
-  author: string;
-  author_img: string;
-  book_img: string[];
+interface IGetallPosts {
   id: string;
-  text_uz: string;
-  title_uz: string;
+  full_name: string;
+  avatar: File | null;
+  position: string;
+  birthday: string;
+  about: string;
 }
 
-export const PostBooks = () => {
+export const PostStaff = () => {
   const [clickRemove, setClickRemove] = useState<boolean>(false);
   const handleActionClickRemove = async (id: string) => {
     setClickRemove(true);
     try {
-      const response = await api.delete(`/books/delete-book/${id}`);
+      const response = await api.delete(`/staff/${id}`);
       if (response.status) {
         toast.success("Muvaffaiyatli o'chirildi");
-        getBooksApi();
+        getPostsApi();
       }
     } catch (error) {
       if (axios.isAxiosError(error)) {
@@ -53,12 +52,12 @@ export const PostBooks = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [isOpenEdit, setIsOpenEdit] = useState<boolean>(false);
 
-  const [allBooks, setAllBooks] = useState<IGetAllBooks[]>([]);
+  const [allPosts, setallPosts] = useState<IGetallPosts[]>([]);
 
-  const getBooksApi = async () => {
+  const getPostsApi = async () => {
     try {
-      const response = await api.get("/books/get-all-books");
-      setAllBooks(response.data.data);
+      const response = await api.get("/staff");
+      setallPosts(response.data.data);
     } catch (error) {
       if (axios.isAxiosError(error)) {
         console.error("Axios Error:", error.message); // Axios xatoliklarini ushlash
@@ -69,45 +68,52 @@ export const PostBooks = () => {
   };
 
   useEffect(() => {
-    getBooksApi();
+    getPostsApi();
   }, []);
 
-  const [idClick, setIdClick] = useState<string>("");
+  const [idClick, setIdClick] = useState<IGetallPosts>({
+    full_name: "",
+    avatar: null,
+    position: "",
+    birthday: "",
+    about: "",
+    id: "",
+  });
   return (
     <div className="w-full px-4 sm:px-8">
       <div className="flex w-full flex-col sm:flex-row justify-between items-center sm:items-center">
-        <h1 className="text-[20px] font-bold mb-4 sm:mb-0">Kitob yuklash</h1>
+        <h1 className="text-[20px] font-bold mb-4 sm:mb-0">Xodim yuklash</h1>
         <Button
           color="primary"
           onPress={() => setIsOpen(true)}
           startContent={<MdPublish />}
           className="w-full sm:w-auto"
         >
-          Kitob yuklash
+          Xodim yuklash
         </Button>
         <Modal
           size="2xl"
           scrollBehavior="outside"
-          className="w-full sm:w-[650px] h-auto"
+          className="w-full sm:w-[650px] h-auto overflow-y-scroll"
           isOpen={isOpen}
           onClose={() => setIsOpen(false)}
         >
           <ModalContent>
             <ModalBody>
-              <CreateBooks />
+              <CreateStaff />
             </ModalBody>
           </ModalContent>
         </Modal>
         <Modal
           size="2xl"
           scrollBehavior="outside"
-          className="w-full sm:w-[650px] h-auto"
+          className="w-full sm:w-[650px] h-auto overflow-y-scroll"
           isOpen={isOpenEdit}
           onClose={() => setIsOpenEdit(false)}
         >
           <ModalContent>
             <ModalBody>
-              <EditBook id={idClick} />
+              <EditStaff id={idClick} />
             </ModalBody>
           </ModalContent>
         </Modal>
@@ -127,34 +133,38 @@ export const PostBooks = () => {
         <Table className="w-full">
           <TableHeader className="w-full">
             <TableColumn>
-              <h1>Kitob rasmi</h1>
+              <h1>Xodim rasmi</h1>
             </TableColumn>
             <TableColumn>
-              <h1>Kitob nomi</h1>
+              <h1>Xodim nomi</h1>
             </TableColumn>
             <TableColumn>
-              <h1>Muallif ismi</h1>
+              <h1>Xodim turi</h1>
+            </TableColumn>
+            <TableColumn>
+              <h1>Xodim haqida</h1>
             </TableColumn>
             <TableColumn>
               <h1>Action</h1>
             </TableColumn>
           </TableHeader>
           <TableBody className="w-full">
-            {allBooks.map((row, index) => (
+            {allPosts.map((row, index) => (
               <TableRow key={index} className="w-full">
                 <TableCell>
-                  {row.book_img.slice(0, 1).map((item) => (
-                    <Image
-                      src={`${item}`}
-                      className="w-[50px] h-[50px] object-cover"
-                    />
-                  ))}
+                  <Image
+                    src={`${row.avatar}`}
+                    className="w-[50px] h-[50px] object-cover"
+                  />
                 </TableCell>
                 <TableCell>
-                  <h1>{row.title_uz}</h1>
+                  <h1>{row.full_name}</h1>
                 </TableCell>
                 <TableCell>
-                  <h1>{row.author}</h1>
+                  <h1>{row.position}</h1>
+                </TableCell>
+                <TableCell>
+                  <h1>{row.about}</h1>
                 </TableCell>
                 <TableCell>
                   <div className="flex gap-2">
@@ -162,7 +172,7 @@ export const PostBooks = () => {
                       color="primary"
                       onClick={() => {
                         setIsOpenEdit(true);
-                        setIdClick(row.id);
+                        setIdClick(row);
                       }}
                       className="mr-2"
                     >

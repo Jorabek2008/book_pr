@@ -45,14 +45,14 @@ export const Footer = () => {
                 <FaMapMarkedAlt className="text-[#FBD45A] size-[30px]" />
                 <h1 className="text-white text-[20px]">
                   Surxondaryo viloyati Sherobod tumani ...
-                </h1>
               </div>
 
               <div className="flex items-center gap-4 mt-[20px]">
                 <FaPhoneAlt className="text-[#FBD45A] size-[24px]" />
-                <h1 className="text-white text-[20px]">+998 (94)-060-93 00</h1>
+                <h1 className="text-white text-[20px] max-lg:text-base">
+                  +998 (94)-060-93 00
+                </h1>
               </div>
-            </div>
 
             <div className="w-full md:w-[270px]">
               <h1 className="text-white text-[24px] mt-[20px] font-bold">
@@ -65,7 +65,6 @@ export const Footer = () => {
                   <h1 className="text-white text-[20px]">+998 97 532 30 71</h1>
                   <h1 className="text-white text-[20px] mt-4">
                     +998 97 532 30 71
-                  </h1>
                 </div>
               </div>
 

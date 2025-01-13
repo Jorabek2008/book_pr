@@ -8,11 +8,31 @@ import {
   Location,
   Management,
 } from "./pages";
-import { AdminDashboard } from "./components";
+import { AdminDashboard, ChangePassword } from "./components";
 import { Toaster } from "react-hot-toast";
 import { AdminLoginProtected, AdminProtected } from "./pages/admin";
+import { userService } from "./redux/services";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { setUser } from "./redux/slice/user";
+import { OneBooks } from "./components/get-all-books/one-books";
+import { OneAds } from "./components/ads/one-ads";
 
 export const App = () => {
+  const dispatch = useDispatch();
+  const getUser = async () => {
+    try {
+      const reponse = await userService();
+      dispatch(setUser(reponse.user));
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    getUser();
+  }, []);
+
   return (
     <div>
       <Toaster />
@@ -36,9 +56,12 @@ export const App = () => {
             </AdminLoginProtected>
           }
         />
+        <Route path="/one-book/:bookId" element={<OneBooks />} />
+        <Route path="/one-ads/:adsId" element={<OneAds />} />
         <Route path="/location" element={<Location />} />
         <Route path="/management" element={<Management />} />
         <Route path="/admin-dashboard" element={<AdminDashboard />} />
+        <Route path="/change-password" element={<ChangePassword />} />
       </Routes>
     </div>
   );

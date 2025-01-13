@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { getAdsService } from "../service";
+import { getAdsService } from "../services";
 import toast from "react-hot-toast";
 
 interface Ad {
@@ -8,7 +8,6 @@ interface Ad {
   image: string;
   createdAt: string;
   view_count: number;
-  // Add other fields as needed
 }
 
 interface IAdsState {
