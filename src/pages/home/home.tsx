@@ -7,7 +7,7 @@ import { GetAllBooks } from "../../components/get-all-books";
 
 const images = [
   "https://images.unsplash.com/photo-1521587760476-6c12a4b040da?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8bGlicmFyeXxlbnwwfHwwfHx8MA%3D%3D",
-  "/libaryBg2.jpg",
+  "/homeImg.webp",
   "/libaryBg3.jpg",
   "/libaryBg.png",
 ];
@@ -56,7 +56,7 @@ export const Home = () => {
             <h1 className="xl:text-[35px] text-[16px] sm:text-[2vw] md:text-[2vw] poppins-regular text-white xl:leading-[61px] sm:leading-[20px] md:leading-[30px]">
               Bizning zamonaviy kutubxonamizga xush kelibsiz!
             </h1>
-            Angor tuman Axborot <br /> kutubxona <br /> markazi
+            Sherabod tuman Axborot <br /> kutubxona <br /> markazi
           </h1>
         </div>
         <div className="absolute bottom-5 left-1/2 transform -translate-x-1/2 z-20 flex space-x-2">
