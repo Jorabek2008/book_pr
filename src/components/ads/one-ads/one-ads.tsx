@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Header } from "../../header";
 import { Footer } from "../../footer";
@@ -14,6 +14,7 @@ interface IGetBook {
   view_count: string;
   createdAt: string;
 }
+
 export const OneAds = () => {
   const { adsId } = useParams();
   const [getBook, setGetBook] = useState<IGetBook>();

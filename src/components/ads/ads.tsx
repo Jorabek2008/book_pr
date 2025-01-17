@@ -53,7 +53,7 @@ export const Ads: FC<AdsProps> = ({ data, pagination }) => {
           E'lonlar
         </h1>
         <div className="flex flex-col md:flex-row items-center flex-wrap gap-3 justify-between">
-          <div className="w-full rounded-2xl grid grid-cols-4 gap-x-10 gap-20">
+          <div className="w-full rounded-2xl mx-2 grid grid-cols-4 gap-5 gap-x-20">
             {loading ? (
               <div>
                 <Card className="w-[300px] p-4" radius="lg">

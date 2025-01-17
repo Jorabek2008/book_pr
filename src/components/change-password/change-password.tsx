@@ -1,7 +1,7 @@
 import { Button, Image, Input } from "@nextui-org/react";
 import { Controller, useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
-import { useState, useEffect, FC } from "react";
+import { useState } from "react";
 import { api } from "../../api";
 import { toast } from "react-hot-toast";
 import axios from "axios";
@@ -12,32 +12,24 @@ interface FormData {
   confirmPassword: string;
 }
 
-type TForm = {
-  id: FormData;
-};
-
-export const ChangePassword: FC<TForm> = ({ id }) => {
+export const ChangePassword = () => {
   const [loading, setLoading] = useState<boolean>(false);
 
   const {
     handleSubmit,
     reset,
     control,
-    setValue,
     formState: { errors },
   } = useForm<FormData>();
 
   const onSubmit = async (data: FormData) => {
     setLoading(true);
-    const formData = new FormData();
-    formData.append("oldPassword", data.oldPassword);
-    formData.append("newPassword", data.newPassword);
-    formData.append("confirmPassword", data.confirmPassword);
+
     try {
-      await api.put(`/auth/change-password`, formData, {
-        headers: {
-          "Content-Type": "application/json",
-        },
+      await api.put(`/auth/change-password`, {
+        oldPassword: data.oldPassword,
+        newPassword: data.newPassword,
+        confirmPassword: data.confirmPassword,
       });
       toast.success("Parol muvaffaqiyatli yangilandi!");
       reset({
@@ -53,23 +45,12 @@ export const ChangePassword: FC<TForm> = ({ id }) => {
           newPassword: "",
           confirmPassword: "",
         });
-      } else {
         toast.error("Error" + error);
       }
     } finally {
       setLoading(false);
     }
   };
-
-  const editPassword = async () => {
-    setValue("oldPassword", id.oldPassword);
-    setValue("newPassword", id.newPassword);
-    setValue("confirmPassword", id.confirmPassword);
-  };
-
-  useEffect(() => {
-    editPassword();
-  }, [id]);
 
   return (
     <div className="flex flex-col md:flex-row w-full h-screen">
