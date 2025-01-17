@@ -92,9 +92,6 @@ export const AdminLogin = () => {
               <Link to={"/"} className="mt-3 text-primary">
                 Bosh sahifaga o'tish
               </Link>
-              <Link to={"/change-password"} className="mt-3 text-primary">
-                Passwordni o'zgartirish
-              </Link>
             </div>
           </div>
         </form>
