@@ -7,3 +7,4 @@ export { AdminDashboard } from "./admin-dashboard";
 export { PostBooks } from "./post-books";
 export { YandexMap } from "./yandex-maps";
 export { ChangePassword } from "./change-password";
+export { Bibliography } from "./bibliography";

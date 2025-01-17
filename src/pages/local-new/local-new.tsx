@@ -49,23 +49,16 @@ export const LocalNew = () => {
                   key={item.id}
                   className="border-2 border-black mt-5 p-2 max-lg:mb-10 max-lg:mt-10"
                 >
-                  {item.link ? (
+                  {item.file && (
                     <h1 className="text-primary">
                       <Link
-                        to={`${item.link}`}
+                        to={`${item.file}`}
+                        target="_blank"
                         className="text-primary underline text-[18px] hover:text-black hover:no-underline transition-colors ease-in"
                       >
                         {item.title}
                       </Link>
                     </h1>
-                  ) : (
-                    <Link
-                      to={`${item.file}`}
-                      target="_blank"
-                      className="text-primary underline text-[18px] hover:text-black hover:no-underline transition-colors ease-linear"
-                    >
-                      <h1>{item.title}</h1>
-                    </Link>
                   )}
                 </div>
               ))}

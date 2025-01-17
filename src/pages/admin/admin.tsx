@@ -1,9 +1,9 @@
 import { Button, Image } from "@nextui-org/react";
 import { FaFileDownload, FaUpload } from "react-icons/fa";
 import { MdDashboard, MdNotifications } from "react-icons/md";
-import { IoExitSharp, IoPeopleSharp } from "react-icons/io5";
+import { IoExitSharp, IoPeopleSharp, IoPush } from "react-icons/io5";
 import { useState } from "react";
-import { AdminDashboard, PostBooks } from "../../components";
+import { AdminDashboard, Bibliography, PostBooks } from "../../components";
 import { Link } from "react-router-dom";
 import { PostPosts } from "../../components/post-posts";
 import { PostStaff } from "../../components/post-staff";
@@ -38,6 +38,12 @@ export const Admin = () => {
     },
     {
       id: 5,
+      name: "Bibliography yuklash",
+      shares: "/bibliograph",
+      icon: <IoPush size={20} />,
+    },
+    {
+      id: 6,
       name: "Xabarlar",
       shares: "/notification",
       icon: <MdNotifications size={20} />,
@@ -109,6 +115,7 @@ export const Admin = () => {
             {active === "/postPosts" && <PostPosts />}
             {active === "/postStaff" && <PostStaff />}
             {active === "/notification" && <Notification />}
+            {active === "/bibliograph" && <Bibliography />}
           </div>
         </div>
       </div>
