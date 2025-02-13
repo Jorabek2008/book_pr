@@ -3,8 +3,8 @@ import { useParams } from "react-router-dom";
 import { Header } from "../../header";
 import { Footer } from "../../footer";
 import { api } from "../../../api";
-import { Image, Spinner } from "@nextui-org/react";
-import { FaEye } from "react-icons/fa";
+import { Spinner } from "@nextui-org/react";
+import { FaCalendar, FaEye } from "react-icons/fa";
 
 interface IGetBook {
   id: string;
@@ -41,30 +41,28 @@ export const OneAds = () => {
         <div className="mx-auto p-6">
           {loading && <Spinner className="flex justify-center mt-20" />}
 
-          {getBook && (
+          {!loading && getBook && (
             <div className="flex flex-col md:flex-row justify-around">
-              <div className="mb-4 md:mb-0">
-                <Image
+              <div>
+                <img
                   src={getBook.image}
                   alt="book img"
-                  className="w-full md:w-[400px] md:h-[350px] object-cover"
+                  className="w-full mb-5"
                 />
-              </div>
-              <div>
                 <h1 className="text-3xl font-bold text-gray-800 mb-2 hyphens-auto">
-                  Postning nomi: {getBook.title_uz}
+                  {getBook.title_uz}
                 </h1>
 
-                <h1 className="text-2xl text-gray-800 mb-2 hyphens-auto">
-                  Postning yaratilgan sanasi: {getBook.createdAt.slice(0, 10)}
-                </h1>
+                <div className="text-2xl text-gray-800 mb-2 hyphens-auto flex items-center gap-x-5 justify-end">
+                  <FaCalendar size={17} className="flex" />{" "}
+                  {getBook.createdAt.slice(0, 10)}
+                  <FaEye /> {getBook.view_count}
+                </div>
 
-                <h1 className="text-lg text-gray-800 mb-2 hyphens-auto">
-                  Post haqida: {getBook.text_uz}
-                </h1>
-                <h1 className="text-lg text-gray-800 flex gap-3 items-center mb-2 hyphens-auto">
-                  Postni ko'rganlar soni: <FaEye /> {getBook.view_count}
-                </h1>
+                <h1
+                  className="text-lg text-gray-800 mb-2 hyphens-auto"
+                  dangerouslySetInnerHTML={{ __html: getBook.text_uz }}
+                ></h1>
               </div>
             </div>
           )}
