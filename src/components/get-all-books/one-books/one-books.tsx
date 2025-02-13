@@ -3,7 +3,8 @@ import { useParams } from "react-router-dom";
 import { Header } from "../../header";
 import { Footer } from "../../footer";
 import { api } from "../../../api";
-import { Image, Spinner } from "@nextui-org/react";
+import { Spinner } from "@nextui-org/react";
+import { FaCalendar } from "react-icons/fa";
 
 interface IGetBook {
   id: string;
@@ -38,27 +39,26 @@ export const OneBooks = () => {
         <div className="mx-auto p-6">
           {loading && <Spinner className="flex justify-center mt-20" />}
 
-          {getBook && (
+          {!loading && getBook && (
             <div className="flex flex-col md:flex-row justify-around">
-              <div className="mb-4 md:mb-0">
-                <Image
+              <div>
+                <img
                   src={getBook.book_img[0]}
                   alt="book img"
-                  className="w-full md:w-[400px] md:h-[350px] object-cover"
+                  className="w-full mb-5"
                 />
-              </div>
-              <div>
                 <h1 className="text-3xl font-bold text-gray-800 mb-2 hyphens-auto">
-                  Kitobning nomi: {getBook.title_uz}
+                  {getBook.title_uz}
                 </h1>
 
-                <h1 className="text-2xl text-gray-800 mb-2 hyphens-auto">
-                  Kitobning yaratilgan sanasi: {getBook.createdAt.slice(0, 10)}
-                </h1>
-
-                <h1 className="text-lg text-gray-800 mb-2 hyphens-auto">
-                  Kitob haqida: {getBook.text_uz}
-                </h1>
+                <div className="text-2xl text-gray-800 mb-2 hyphens-auto flex items-center gap-x-3">
+                  <FaCalendar size={17} className="flex" />{" "}
+                  {getBook.createdAt.slice(0, 10)}
+                </div>
+                <h1
+                  className="text-lg text-gray-800 mb-2 hyphens-auto"
+                  dangerouslySetInnerHTML={{ __html: getBook.text_uz }}
+                ></h1>
               </div>
             </div>
           )}
