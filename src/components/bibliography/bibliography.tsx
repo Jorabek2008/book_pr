@@ -130,10 +130,10 @@ export const Bibliography = () => {
         <Table className="w-full">
           <TableHeader className="w-full">
             <TableColumn>
-              <h1>Bibliografiyani nomi</h1>
+              <h1>Ma'lumot nomi</h1>
             </TableColumn>
             <TableColumn>
-              <h1>Bibliografiyani file yoki linki</h1>
+              <h1>Ma'lumot file yoki linki</h1>
             </TableColumn>
             <TableColumn>
               <h1>Action</h1>

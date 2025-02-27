@@ -136,10 +136,10 @@ export const PostStaff = () => {
               <h1>Xodim rasmi</h1>
             </TableColumn>
             <TableColumn>
-              <h1>Xodim nomi</h1>
+              <h1>Xodim ism familiyasi</h1>
             </TableColumn>
             <TableColumn>
-              <h1>Xodim turi</h1>
+              <h1>Xodim lavozimi</h1>
             </TableColumn>
             <TableColumn>
               <h1>Xodim haqida</h1>
