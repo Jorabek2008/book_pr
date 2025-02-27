@@ -33,16 +33,16 @@ export const CreateStaff = () => {
       formData.append("avatar", selectedImages);
     }
     formData.append("full_name", data.full_name);
-    formData.append("birtday", data.birthday);
-    formData.append("about", data.about);
     formData.append("position", data.position);
+    formData.append("birthday", data.birthday);
+    formData.append("about", data.about);
     try {
-      await api.post("/books/create-book", formData, {
+      await api.post("/staff", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
       });
-      toast.success("Post muvaffaqiyatli qo'shildi");
+      toast.success("Xodim muvaffaqiyatli qo'shildi");
       reset({
         avatar: null,
         about: "",
@@ -65,9 +65,8 @@ export const CreateStaff = () => {
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
     if (files) {
-      // Convert FileList to Array
-      setSelectedImages(files[0]); // Append new files
-      setValue("avatar", files[0]); // Update react-hook-form
+      setSelectedImages(files[0]);
+      setValue("avatar", files[0]);
     }
   };
 
@@ -134,6 +133,7 @@ export const CreateStaff = () => {
             />
           )}
         />
+        <p>For Example: yyyy-oo-kk: 2020-01-03</p>
 
         <label htmlFor="img1" className="block mt-3">
           Xodimning rasmini kiriting

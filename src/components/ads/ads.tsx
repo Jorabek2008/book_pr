@@ -50,7 +50,7 @@ export const Ads: FC<AdsProps> = ({ data, pagination }) => {
     <div>
       <div className="max-w-[1200px] mx-auto py-[60px] max-lg:p-10">
         <h1 className="text-[8vw] sm:text-[38px] poppins-bold leading-[61px] mb-[21px]">
-          E'lonlar
+          Kun Ma'lumotlari
         </h1>
         <div className="flex flex-col md:flex-row items-center flex-wrap gap-3 justify-between">
           <div className="w-full rounded-2xl mx-2 grid grid-cols-4 gap-5 gap-x-20">

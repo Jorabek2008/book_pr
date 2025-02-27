@@ -14,7 +14,7 @@ export const Admin = () => {
   const ADMIN_MOCK = [
     {
       id: 1,
-      name: "Dashboard",
+      name: "Asosiy sahifa",
       shares: "/dashboard",
       icon: <MdDashboard size={20} />,
     },
@@ -26,7 +26,7 @@ export const Admin = () => {
     },
     {
       id: 3,
-      name: "Post yuklash",
+      name: "Kun ma'lumotlarini yuklash",
       shares: "/postPosts",
       icon: <FaUpload size={20} />,
     },
@@ -38,7 +38,7 @@ export const Admin = () => {
     },
     {
       id: 5,
-      name: "Bibliography yuklash",
+      name: "Bibliografiya yuklash",
       shares: "/bibliograph",
       icon: <IoPush size={20} />,
     },
@@ -81,7 +81,7 @@ export const Admin = () => {
       </div>
 
       <div className="flex flex-col sm:flex-row gap-4 h-full mt-10">
-        <div className="flex flex-col gap-4 w-full sm:w-[290px] bg-[#D4D4D8] px-4 pb-4 pt-[68px] rounded-2xl sm:ml-7">
+        <div className="flex flex-col gap-4 w-full sm:w-[310px] bg-[#D4D4D8] px-4 pb-4 pt-[68px] rounded-2xl sm:ml-7">
           {ADMIN_MOCK.map((item) => (
             <Button
               key={item.id}

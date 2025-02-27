@@ -15,10 +15,6 @@ export const About = () => {
               topishingiz mumkin.
             </h3>
 
-            <h4 className="text-[5vw] sm:text-[26px] mt-[19px] poppins-medium leading-[30px]">
-              Kitoblar turlari
-            </h4>
-
             <div className="mt-[32px] ml-[20px]">
               <div className="flex gap-3">
                 <img
@@ -27,19 +23,10 @@ export const About = () => {
                   className="w-[20px] h-[20px]"
                 />
                 <p className="text-[4vw] sm:text-[19px] poppins-regular">
-                  Xalqaro
+                  Barcha turdagi adabiyotlar
                 </p>
               </div>
-              <div className="flex gap-3">
-                <img
-                  src="/check.png"
-                  alt="check"
-                  className="w-[20px] h-[20px]"
-                />
-                <p className="text-[4vw] sm:text-[19px] poppins-regular">
-                  O'quv darliklar
-                </p>
-              </div>
+
               <div className="flex gap-3">
                 <img
                   src="/check.png"
@@ -53,13 +40,12 @@ export const About = () => {
             </div>
 
             <p className="text-[4vw] sm:text-[19px] poppins-regular mt-[31px]">
-              Bundan tashqari yoshlar va katta yoshlilar uchun ham kitoblarimiz
-              mavjud.
+              Siz izlagan barcha adabiyotlar angor tuman axbarot kutubxonasida
             </p>
           </div>
 
           <Image
-            src="/weAbout.png"
+            src="/about.jpg"
             className="w-full sm:w-[557px] h-auto mt-4 sm:mt-0"
             alt="libaryBg"
           />

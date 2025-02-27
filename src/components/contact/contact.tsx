@@ -124,7 +124,7 @@ export const Contact = () => {
                 isLoading={loading}
                 className="bg-[#030522] text-white mt-3 w-full max-lg:mb-5 max-lg:mt-5"
               >
-                Boshlash
+                Jo'natish
               </Button>
             </form>
           </div>
