@@ -120,7 +120,10 @@ export const AdminDashboard = () => {
         <div className="bg-white shadow rounded-lg p-6 flex items-center justify-between">
           <div>
             <div className="text-gray-500 text-sm">Jami Foydalanuvchilar</div>
-            <div className="text-2xl font-bold">{users.length}</div>
+            <div className="text-2xl font-bold">
+              {" "}
+              {data.reduce((a: number, c: ChartData) => a + c.Tomoshabinlar, 0)}
+            </div>
           </div>
           <div className="text-4xl">
             <FaUser size={30} />
