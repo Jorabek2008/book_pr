@@ -54,7 +54,9 @@ export const PostPosts = () => {
 
   const getPostsApi = async () => {
     try {
-      const response = await api.get("/posts/get-all-posts");
+      const response = await api.get("/posts/get-all-posts", {
+        params: { limit: Number.MAX_SAFE_INTEGER },
+      });
       setallPosts(response.data.data);
     } catch (error) {
       if (axios.isAxiosError(error)) {

@@ -57,7 +57,9 @@ export const PostBooks = () => {
 
   const getBooksApi = async () => {
     try {
-      const response = await api.get("/books/get-all-books");
+      const response = await api.get("/books/get-all-books", {
+        params: { limit: Number.MAX_SAFE_INTEGER },
+      });
       setAllBooks(response.data.data);
     } catch (error) {
       if (axios.isAxiosError(error)) {
